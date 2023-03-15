@@ -1,8 +1,10 @@
 import { ReactNode } from 'react'
+
 import type { Authors } from 'contentlayer/generated'
-import SocialIcon from '@/components/social-icons'
+
 import Image from '@/components/Image'
 import { PageSEO } from '@/components/SEO'
+import SocialIcon from '@/components/social-icons'
 
 interface Props {
   children: ReactNode
@@ -16,8 +18,8 @@ export default function AuthorLayout({ children, content }: Props) {
     <>
       <PageSEO title={`About - ${name}`} description={`About me - ${name}`} />
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+        <div className="space-y-2 pb-8">
+          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-4xl md:leading-14">
             About
           </h1>
         </div>
