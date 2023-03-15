@@ -1,10 +1,17 @@
-import { MDXLayoutRenderer } from 'pliny/mdx-components'
-import PageTitle from '@/components/PageTitle'
-import { MDXComponents } from '@/components/MDXComponents'
-import { sortedBlogPost, coreContent } from 'pliny/utils/contentlayer'
-import { InferGetStaticPropsType } from 'next'
-import { allBlogs, allAuthors } from 'contentlayer/generated'
 import type { Blog } from 'contentlayer/generated'
+import {
+  allAuthors,
+  allBlogs,
+} from 'contentlayer/generated'
+import { InferGetStaticPropsType } from 'next'
+import { MDXLayoutRenderer } from 'pliny/mdx-components'
+import {
+  coreContent,
+  sortedBlogPost,
+} from 'pliny/utils/contentlayer'
+
+import { MDXComponents } from '@/components/MDXComponents'
+import PageTitle from '@/components/PageTitle'
 
 const DEFAULT_LAYOUT = 'PostLayout'
 

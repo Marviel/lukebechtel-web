@@ -2,23 +2,23 @@
 
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Next.js Starter Blog',
-  author: 'Tails Azimuth',
-  headerTitle: 'TailwindBlog',
-  description: 'A blog created with Next.js and Tailwind.css',
+  title: 'Luke Bechtel',
+  author: 'Luke Bechtel ',
+  headerTitle: 'Luke Bechtel',
+  description: 'Welcome :)',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
+  siteUrl: 'https://lukebechtel.com',
   siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
-  siteLogo: '/static/images/logo.png',
-  image: '/static/images/avatar.png',
+  siteLogo: '/static/images/luke/avatar.jpg',
+  image: '/static/images/luke/avatar.jpg',
   socialBanner: '/static/images/twitter-card.png',
-  email: 'address@yoursite.com',
-  github: 'https://github.com',
-  twitter: 'https://twitter.com/Twitter',
-  facebook: 'https://facebook.com',
-  youtube: 'https://youtube.com',
-  linkedin: 'https://www.linkedin.com',
+  email: 'luke@lukebechtel.com',
+  github: 'https://github.com/Marviel',
+  twitter: 'https://twitter.com/linkbechtel',
+  // facebook: 'https://facebook.com',
+  // youtube: 'https://youtube.com',
+  linkedin: 'https://www.linkedin.com/in/luke-anthony-bechtel/',
   locale: 'en-US',
   analytics: {
     // If you want to use an analytics provider you have to add it to the
