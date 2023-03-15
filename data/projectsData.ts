@@ -1,14 +1,16 @@
 const projectsData = [
   {
+    type: 'company',
     title: 'Revaly',
     role: 'Director of Engineering',
     tasks: '',
-    description: `3D collaboration for the entire team Share, view, and give feedback on any 3D design asynchronously or in real-time.`,
+    description: `3D collaboration for the entire team. Share, view, and give feedback on any 3D design asynchronously or in real-time.`,
     imgSrcStatic: '/static/images/revaly/Revaly-Banner-Icon-Text.png',
     imgSrcHovering: '/static/images/revaly/Showcase-Short-Intro.gif',
     href: 'https://www.revaly.com',
   },
   {
+    type: 'company',
     title: 'Collider',
     role: 'Cofounder & Dir. Software',
     tasks: '',
