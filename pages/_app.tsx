@@ -14,6 +14,7 @@ import { theme } from 'styles/theme'
 import LayoutWrapper from '@/components/LayoutWrapper'
 import siteMetadata from '@/data/siteMetadata'
 import { ThemeProvider as MUIThemeProvider } from '@mui/material'
+import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -23,6 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <meta content="width=device-width, initial-scale=1" name="viewport" />
         </Head>
         <Analytics analyticsConfig={siteMetadata.analytics} />
+        <VercelAnalytics />
         <LayoutWrapper>
           <SearchProvider searchConfig={siteMetadata.search}>
             <Component {...pageProps} />
