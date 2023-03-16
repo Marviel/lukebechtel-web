@@ -5,9 +5,16 @@ tags: ['gpt-4', 'programming-languages', 'large-language-models', 'ai', 'ml']
 draft: false
 summary: When the machines make machines, we're in a new world.
 ---
+
+<sub>
+  *Edit: [TenetLang](https://github.com/tenetlang/tenetlang) now has a github repo, which I'll be
+  updating as I continue to work on it with GPT-4. Open a PR or submit a feature request!*
+</sub>
+
 ## GPT-4
 
 GPT-4 was released on Tuesday, and on my sector of Twitter, many of the smartest people I know were losing their brilliant minds.
+
 <br/>
 *And for good reason*; many wonderful things have been made with GPT-3 class of LLMs, keeping a frenetic pace that has continued to increase, giving indications of the oft' cited Kurzweilian "Intelligence Explosion."  Unimaginable as it may be, the excitement grew even faster yesterday as OpenAI continued to ram its foot on the pedal of progress, to the fear and joy of many.
 <br/>
@@ -24,7 +31,7 @@ I was lucky enough to be randomly selected into the ChatGPT-4 beta, and I stayed
             Higgledy-piggledy,
 
             Humanity's facing the
-            
+
             Rise of the thinking
 
             Machines, so they dread.
@@ -38,6 +45,7 @@ I was lucky enough to be randomly selected into the ChatGPT-4 beta, and I stayed
             Adapt or be led.
         </MDXWrapper>
     </GPT4Message>
+
 </Thread>
 <br/>
 😬
@@ -53,46 +61,58 @@ I was lucky enough to be randomly selected into the ChatGPT-4 beta, and I stayed
             The sun had barely begun to kiss the horizon, casting a hazy orange glow over the sprawling expanse of Silicon Valley when I found myself hurtling down Highway 101, the great artery of the digital revolution, in a rented Cadillac convertible. It was a time when paranoia and ambition were interchangeable currencies, as the race for dominance in the AI arena had reached a fever pitch. The year was 2023, and I was knee-deep in a twisted, intoxicating adventure that would forever alter the course of human history.
 
             <br/>
-            This was no ordinary assignment. I had been sent to infiltrate the inner sanctums of the tech giants—Google, Facebook, Apple, and the like—to unearth the secrets of their artificial intelligence machinations. I was armed with a fistful of expense account dollars, a warped sense of journalistic duty, and enough amphetamines to fuel a small army. 
-            
+            This was no ordinary assignment. I had been sent to infiltrate the inner sanctums of the tech giants—Google, Facebook, Apple, and the like—to unearth the secrets of their artificial intelligence machinations. I was armed with a fistful of expense account dollars, a warped sense of journalistic duty, and enough amphetamines to fuel a small army.
+
             ...*[cut for length]*
         </MDXWrapper>
     </GPT4Message>
+
 </Thread>
 
-<br/>
+<br />
 
 After my experience in the last 36h (I was up until 4am, recall), I believe this acceleration will only continue.
-<br/>
+
+<br />
 Which is -- *maybe* -- great.
-<br/>
+<br />
 And also maybe awful.
-<br/>
+<br />
 We'll see.
-<br/>
+<br />
 .
-<br/>
+<br />
 .
-<br/>
+<br />
 .
-<br/>
-*But* in the *meantime*. . .  there's a lot of beauty to be had.
+<br />
+*But* in the *meantime*. . . there's a lot of beauty to be had.
 
 ## Coding
+
 LLMs in the GPT family have read every programming language in the world, billions of times. It's been known for some time that these agents can write small snippets of code with some limited success.
-However, to my knowledge, none of these agents have ever been asked to make their *own* programming language.<sup>1</sup> This type of task is a bit more complex, and requires a bit more creativity and foresight than much of the internet believes LLMs to have.
+However, to my knowledge, none of these agents have ever been asked to make their _own_ programming language.<sup>1</sup> This type of task is a bit more complex, and requires a bit more creativity and foresight than much of the internet believes LLMs to have.
 
-<sub>1. *EDIT: as pointed out by an HN poster, [some prior art does exist](https://judehunter.dev/blog/chatgpt-helped-me-design-a-brand-new-programming-language)*, though nothing yet for GPT-4 (that I can tell).</sub>
-<br/>
-<br/>
-Some folks on the internet tend to think lowly of LLMs as merely "Stochastic Parrots" -- simply "remixers" of old ideas. In a way, they're right; but I'd argue that remixing is the fundamental force of creativity. Nothing comes from scratch.
-> Nothing of me is original. I am the combined effort of everyone I've ever known.
+<sub>
+  1. *EDIT: as pointed out by an HN poster, [some prior art does
+  exist](https://judehunter.dev/blog/chatgpt-helped-me-design-a-brand-new-programming-language)*,
+  though nothing yet for GPT-4 (that I can tell).
+</sub>
+<br />
+<br />
+Some folks on the internet tend to think lowly of LLMs as merely "Stochastic Parrots" -- simply "remixers"
+of old ideas. In a way, they're right; but I'd argue that remixing is the fundamental force of creativity.
+Nothing comes from scratch. > Nothing of me is original. I am the combined effort of everyone I've ever
+known.
 
-*― Chuck Palahniuk, Invisible Monsters*
-<br/>
-Philosophy aside, I was curious -- **what would a being *made* of code, that has *read* most of the code in the world, think about how to *design* code?**
+_― Chuck Palahniuk, Invisible Monsters_
+
+<br />
+Philosophy aside, I was curious -- **what would a being *made* of code, that has *read* most of the code
+in the world, think about how to *design* code?**
 
 ## Arc 1: First Principles
+
 <Thread>
     <LukeMessage>
         <MDXWrapper>
@@ -125,6 +145,7 @@ Philosophy aside, I was curious -- **what would a being *made* of code, that has
 
         </MDXWrapper>
     </GPT4Message>
+
 </Thread>
 <br/>
 Ok, cute, where does the rubber meet the road, though?
@@ -143,11 +164,11 @@ Ok, cute, where does the rubber meet the road, though?
 
                     - Works well: Unix philosophy of building small, focused tools that perform one task well (e.g., grep, sed, awk) and can be combined to create complex pipelines.
                     - Difficulties: Large legacy systems with tightly coupled components, where it is challenging to refactor or introduce new features without breaking existing functionality.
-                
+
                 2. Abstraction:
                     - Works well: Object-oriented programming languages (e.g., Java, C++) that encourage encapsulation and hiding implementation details behind well-defined interfaces.
                     - Difficulties: Overuse of abstraction can lead to over-engineering, making the code more complex than necessary.
-                
+
                 3. Scalability:
                     - Works well: Distributed systems like Google's MapReduce or Apache Kafka, which can scale horizontally to accommodate massive amounts of data and users.
                     - Difficulties: Monolithic architectures that are not designed for scalability, making it challenging to handle increased workloads without major refactoring.
@@ -160,14 +181,14 @@ Ok, cute, where does the rubber meet the road, though?
                 6. Adaptability:
                     - Works well: Microservices architectures, where individual services can be independently updated, scaled, or replaced without affecting the entire system.
                     - Difficulties: Rigid, inflexible code that does not follow the Open/Closed Principle, making it difficult to introduce new features or adapt to changing requirements.
-                
+
                 7. Performance:
                     - Works well: High-performance computing (HPC) systems, where performance is critical and developers optimize code to run efficiently on specialized hardware.
                     - Difficulties: Premature optimization that sacrifices code readability and maintainability for marginal performance gains.
                 8. Security:
                     - Works well: Secure software development practices, such as the OWASP Top Ten, that help developers avoid common security vulnerabilities.
                     - Difficulties: Insufficient focus on security, leading to software with easily exploitable vulnerabilities, or reliance on outdated technologies with known security flaws.
-                
+
                 9. Collaboration:
                     - Works well: Agile methodologies, such as Scrum or Kanban, which emphasize teamwork, communication, and iterative development.
                     - Difficulties: Disconnected teams working in silos without effective communication, leading to misunderstandings, duplicated work, and delays.
@@ -176,6 +197,7 @@ Ok, cute, where does the rubber meet the road, though?
                     - Difficulties: Organizations that resist change or lack a culture of learning and experimentation, making it difficult to adopt new techniques, technologies, or best practices.
         </MDXWrapper>
     </GPT4Message>
+
 </Thread>
 <br/>
 Well cool. But what about the actual syntax of the language?
@@ -213,6 +235,7 @@ Well cool. But what about the actual syntax of the language?
                 While it's not possible to create a perfect language that covers all these aspects without any trade-offs, incorporating these ideas would help create a programming language that promotes the tenets of good software development. Please note that the specific syntax will depend on the design choices made and might borrow inspiration from existing languages.
         </MDXWrapper>
     </GPT4Message>
+
 </Thread>
 <br/>
 ... and what about the actual syntax of the language?
@@ -238,9 +261,9 @@ Let's give it a little nudge out of its hedging.
             6. Pattern matching and destructuring, inspired by Haskell and Rust.
             7. Built-in support for concurrency using async/await and lightweight threads.
             8. Interoperability with other languages using a Foreign Function Interface (FFI).
-            
+
             Below is a simple example of a program that demonstrates TenetLang syntax and features. This program defines a class Person, creates a list of Person objects, filters it based on age, and sorts it alphabetically by name, all while handling concurrency:
-        
+
             ```python
             class Person {
                 let name: String
@@ -296,11 +319,12 @@ Let's give it a little nudge out of its hedging.
             4. Immutable data structures: The let keyword declares immutable variables, promoting safe and predictable code.
             5. Concurrency: The async/await syntax allows for easy handling of asynchronous code execution and lightweight threads.
             6. Interoperability: Though not demonstrated in this example, TenetLang would support calling functions or using libraries from other languages through an FFI mechanism.
-            
+
             Please note that creating a full-fledged language is a complex task, and this example only provides a high-level overview of how TenetLang's syntax and features might look.
 
         </MDXWrapper>
     </GPT4Message>
+
 </Thread>
 <br/>
 Ok, now we're talking.
@@ -317,7 +341,8 @@ Always happy to see type annotations :)
 But it mentioned a few things in its goals that it didn't cover, such as distributed compute.
 
 I've read about how Julia and other languages in that family can help with distributed computation, but I'm curious what GPT-4 thinks.
-<br/>
+
+<br />
 Let's see.
 
 <br/>
@@ -397,51 +422,68 @@ Let's see.
 
             main()
             ```
-        
+
         In this updated example, TenetLang demonstrates its support for distributed computing with the following features:
 
         1. Message passing and lightweight actors: The PersonFetcher actor communicates asynchronously with the PersonService using the receive method and the send function.
         2. Remote Procedure Calls (RPC): A remote PersonService is defined, and an instance is connected to using the rpc.connect function.
         3. Serialization and deserialization: Though not explicitly shown in the example, it's implied that the RPC mechanism handles serialization and deserialization of data when communicating with the remote service.
-        
+
         These features help TenetLang facilitate distributed computing by providing built-in tools and abstractions that make it easier to build, manage, and scale distributed systems.
 
         </MDXWrapper>
     </GPT4Message>
-</Thread>
 
+</Thread>
 
 <Thread>
-    <LukeMessage>
-        <MDXWrapper>
-            Can you explain more about what the PersonService does? Why isn't it just a Class?
-        </MDXWrapper>
-    </LukeMessage>
-    <GPT4Message>
-        <MDXWrapper>
-            In the updated example, `PersonService` represents a remote service definition, not a regular class. It serves as an interface for a remote data source that can fetch Person objects from another location or service, possibly running on a different machine or even implemented in a different programming language. By defining PersonService as an RPC service, we explicitly describe the contract for how clients can interact with this remote service.
-            <br/>
-            In a distributed computing context, services are often spread across multiple nodes or processes to achieve better scalability, fault tolerance, and performance. The `PersonService` plays the role of a service that resides on a different node or process, and the main application communicates with it using a remote procedure call (RPC) mechanism.
-            <br/>
-            In contrast, a class would typically represent an object within the same process or application, without built-in support for remote communication. By using an RPC service, we can abstract away the complexities of network communication, serialization, and deserialization, allowing developers to focus on the core functionality and logic of their application.
-            <br/>
-            In the TenetLang example, we use the `rpc.connect` function to connect to a remote `PersonService` instance using a specified URL. This connection returns a "proxy" instance that can be used to make remote calls as if they were local method calls. The RPC mechanism transparently handles the network communication, serialization, and deserialization of data.
-            <br/>
-            To summarize, the `PersonService` is defined as an RPC service instead of a class to emphasize its role as a remote service in a distributed computing scenario and facilitate communication between services in a more transparent and streamlined manner.
-            
-        </MDXWrapper>
-    </GPT4Message>
+  <LukeMessage>
+    <MDXWrapper>
+      Can you explain more about what the PersonService does? Why isn't it just a Class?
+    </MDXWrapper>
+  </LukeMessage>
+  <GPT4Message>
+    <MDXWrapper>
+      In the updated example, `PersonService` represents a remote service definition, not a regular
+      class. It serves as an interface for a remote data source that can fetch Person objects from
+      another location or service, possibly running on a different machine or even implemented in a
+      different programming language. By defining PersonService as an RPC service, we explicitly
+      describe the contract for how clients can interact with this remote service.
+      <br />
+      In a distributed computing context, services are often spread across multiple nodes or
+      processes to achieve better scalability, fault tolerance, and performance. The `PersonService`
+      plays the role of a service that resides on a different node or process, and the main
+      application communicates with it using a remote procedure call (RPC) mechanism.
+      <br />
+      In contrast, a class would typically represent an object within the same process or
+      application, without built-in support for remote communication. By using an RPC service, we
+      can abstract away the complexities of network communication, serialization, and
+      deserialization, allowing developers to focus on the core functionality and logic of their
+      application.
+      <br />
+      In the TenetLang example, we use the `rpc.connect` function to connect to a remote
+      `PersonService` instance using a specified URL. This connection returns a "proxy" instance
+      that can be used to make remote calls as if they were local method calls. The RPC mechanism
+      transparently handles the network communication, serialization, and deserialization of data.
+      <br />
+      To summarize, the `PersonService` is defined as an RPC service instead of a class to emphasize
+      its role as a remote service in a distributed computing scenario and facilitate communication
+      between services in a more transparent and streamlined manner.
+    </MDXWrapper>
+  </GPT4Message>
 </Thread>
-<br/>
+<br />
 Makes sense.
 
 Dunno what it'd be like to use it every day, but I kind of like it.
 
-
 ## Arc 2: Design Review
+
 But if GPT-4 is going to be an Engineer -- we're going to have to put it through some kind of design review.
-<br/>
-*I only know about 10 programming languages with any level of decency, so some of these questions may seem funny to the more well-read of you <sub>(ahem, HN).</sub>*
+
+<br />
+*I only know about 10 programming languages with any level of decency, so some of these questions may
+seem funny to the more well-read of you <sub>(ahem, HN).</sub>*
 
 <br/>
 <Thread>
@@ -469,7 +511,7 @@ But if GPT-4 is going to be an Engineer -- we're going to have to put it through
             - Modularity: Actors encapsulate their internal state and communicate via messages, promoting a modular design that is easy to understand, maintain, and test.
 
             In summary, the actor concept in TenetLang is inspired by languages and frameworks that have successfully adopted the Actor Model to build concurrent and distributed systems. Actors provide a powerful abstraction for managing concurrency, fault tolerance, and scalability, making them a fitting choice for TenetLang's support of distributed computing.
-        
+
         </MDXWrapper>
     </GPT4Message>
     <LukeMessage>
@@ -491,13 +533,13 @@ But if GPT-4 is going to be an Engineer -- we're going to have to put it through
             The -> String part can be read as "returns String," which clearly communicates that the function toString returns a value of type String.
 
             On the other hand, the `=>` symbol is used in function definitions, particularly for defining anonymous functions (lambdas) or short one-liner functions. The double arrow `=>` can be read as "maps to" or "evaluates to," which conveys the purpose of the expression more clearly. For example, in the following lambda function:
-        
+
             `let square = (x: Int) => x * x`
             The `=>` symbol can be read as "maps to" or "evaluates to," indicating that the input x maps to or evaluates to the expression `x * x`.
 
             By using distinct symbols for type annotations and function definitions, TenetLang maintains clarity and consistency in its syntax. This design choice helps make the language more readable and intuitive, while clearly communicating the purpose and structure of the code.
 
-        
+
         </MDXWrapper>
     </GPT4Message>
     <LukeMessage>
@@ -541,24 +583,25 @@ But if GPT-4 is going to be an Engineer -- we're going to have to put it through
             With this syntax, the type annotations for both variables and function return types would use a colon :. This approach offers consistency, but it also has the potential to make the syntax less visually distinctive. Ultimately, the choice between using -> or : for function return types comes down to a matter of design preference and balancing the trade-offs between consistency and visual distinction.
         </MDXWrapper>
     </GPT4Message>
+
 </Thread>
 <br/>
 
-Alright, well, it seems pretty reasonable to me. 
+Alright, well, it seems pretty reasonable to me.
 
 I can see the case being made for ->, even though I'm more at home with the Typescript `:` style personally.
 
 We'll let it slide for now.
 
-
 ## Arc 3: LLMs & The Future of TenetLang
+
 Any programmer these days knows about Github Copilot.
 
 I wonder what other treasures widely available LLMs will bring to the table in the future.
-<br/>
-Let's ask.
-<br/>
 
+<br />
+Let's ask.
+<br />
 
 <Thread>
     <LukeMessage>
@@ -575,7 +618,7 @@ Let's ask.
             1. Create a built-in library called language_models that provides an interface to interact with language models like GPT-3 or ChatGPT.
             2. Introduce a LanguageModel class within the library that abstracts the details of making API requests, managing authentication, and handling input/output data.
             3. Provide methods for common language model tasks, such as text completion, text summarization, translation, and more.
-            
+
             Here's an example of how the language_models library could be used in TenetLang:
 
             ```python
@@ -619,7 +662,7 @@ Let's ask.
                 main()
 
             ```
-            
+
             In this example, we create an instance of the GPT3Example class, which internally uses the language_models.LanguageModel class to interact with the GPT-3 or ChatGPT API. The GPT3Example class provides convenient methods for text completion, summarization, and translation. These methods can be easily extended or modified to include other tasks supported by the language model.
 
             <br/>
@@ -629,13 +672,14 @@ Let's ask.
 
         </MDXWrapper>
     </GPT4Message>
+
 </Thread>
 <br/>
 Cute, but similar to what we already have. It being an external library isn't what I was aiming for.
 <br/>
 Let's try something more ambitious.
 
-<br/>
+<br />
 
 <Thread>
     <LukeMessage>
@@ -685,13 +729,14 @@ Let's try something more ambitious.
                     static function add(a: Int, b: Int): Int {
                         return a + b
                     }
-                }   
+                }
             ```
             In this example, the suggest keyword is used to request different types of smart suggestions, such as code completion, documentation, or refactoring. These suggestions are generated by the integrated large language model during the code compilation or interpretation process.
             <br/>
             By deeply integrating large language models like GPT-3 or ChatGPT into TenetLang, developers can benefit from AI-powered assistance directly within the language itself, making the coding process more efficient and helping to improve code quality. This kind of integration has the potential to revolutionize programming languages and the way developers interact with their tools.
         </MDXWrapper>
     </GPT4Message>
+
 </Thread>
 <br/>
 We must go deeper.
@@ -749,6 +794,7 @@ We must go deeper.
         These are just a few ideas for deeply integrating powerful LLMs into a programming language. The integration of AI and programming languages has the potential to revolutionize software development, making it more efficient, accessible, and enjoyable for developers. By exploring these and other creative possibilities, we can lay the foundation for the next generation of intelligent programming tools and languages.
         </MDXWrapper>
     </GPT4Message>
+
 </Thread>
 <br/>
 I'll fill in this commentary later... but you're not here for me, you're here for the AI.
@@ -799,7 +845,7 @@ I'll fill in this commentary later... but you're not here for me, you're here fo
             - Develop a code summarization tool that leverages an LLM to generate human-readable summaries.
             - Train the LLM on examples of code and their corresponding summaries.
             - Generate code summaries by feeding the code to the LLM and processing the generated natural language output.
-            
+
             8. Automatic resource management:
             - Enhance the compiler or runtime environment with an LLM that analyzes code for resource usage.
             - Train the LLM on examples of efficient resource management and optimization techniques.
@@ -831,13 +877,13 @@ I'll fill in this commentary later... but you're not here for me, you're here fo
             - Enhance the IDE's auto-completion engine with an LLM.
             - Train the LLM on a large code corpus and fine-tune it on the specific project's codebase.
             - As the developer types, feed the surrounding code context to the LLM and obtain completion suggestions.
-            
+
             2. Automated refactoring:
 
             - Develop a refactoring tool that leverages an LLM to analyze the code structure and suggest improvements.
             - Train the LLM on a diverse set of well-structured code and examples of refactoring.
             - Analyze the project's code and apply LLM-generated refactoring suggestions, possibly with developer approval.
-            
+
             3. Intelligent debugging:
 
             - Enhance the debugging capabilities of the IDE or debugger by integrating an LLM.
@@ -848,37 +894,37 @@ I'll fill in this commentary later... but you're not here for me, you're here fo
             - Develop a code translation tool that uses an LLM to convert code from one language to another.
             - Train the LLM on parallel code examples in the source and target languages.
             - Translate the input code by feeding it to the LLM and generating the corresponding code in the target language.
-            
+
             5. Design pattern recognition and application:
 
             - Develop a tool that uses an LLM to analyze code and recognize applicable design patterns.
             - Train the LLM on examples of design patterns and their usage in various contexts.
             - Suggest appropriate design patterns for the current code context based on LLM-generated recommendations.
-            
+
             6. Project management and collaboration:
 
             - Integrate LLMs into project management tools or platforms.
             - Train the LLM on project management data, such as task assignments, estimations, and developer profiles.
             - Use the LLM to analyze project requirements and automatically suggest task assignments and effort estimations.
-            
+
             7. Code summarization:
 
             - Develop a code summarization tool that leverages an LLM to generate human-readable summaries.
             - Train the LLM on examples of code and their corresponding summaries.
             - Generate code summaries by feeding the code to the LLM and processing the generated natural language output.
-            
+
             8. Automatic resource management:
 
             - Enhance the compiler or runtime environment with an LLM that analyzes code for resource usage.
             - Train the LLM on examples of efficient resource management and optimization techniques.
             - Apply LLM-generated suggestions for optimizing resource allocation, deallocation, or garbage collection.
-            
+
             9. Intelligent code navigation:
 
             - Integrate an LLM into the IDE or code editor to assist with code navigation.
             - Train the LLM on examples of code structure, component relationships, and dependencies.
             - Use the LLM to suggest relevant navigation targets or display an intelligent code map based on the developer's context.
-            
+
             10. Adaptive learning resources:
 
             - Integrate LLMs into learning platforms, tutorials, or documentation systems.
@@ -887,6 +933,7 @@ I'll fill in this commentary later... but you're not here for me, you're here fo
             - Each of these features requires a combination of LLM integration and modifications to the programming language, compiler, interpreter, IDE, or other development tools. The key to implementing these features effectively is to train the LLM on relevant and diverse data
         </MDXWrapper>
     </GPT4Message>
+
 </Thread>
 <br/>
 Well, you made it.
@@ -895,6 +942,7 @@ Its' a lot right? Who wants to put GPT-4 in a Read-Evaluate-Print-Loop and let t
 <sub>Not me, I'm too scared.</sub>
 
 But here are some other ideas for you to consider:
+
 - Let GPT-4 Analyze an existing language to find areas where we could make it better (e.g. if you could make python programmers 2x more productive, would you?)
 - Let GPT-4 write a new language from scratch using a REPL
 - Let GPT-4 write a compiler for a language it's created
@@ -910,7 +958,7 @@ Fun times ahead...
             Higgledy-piggledy,
 
             Humanity's facing the
-            
+
             Rise of the thinking
 
             Machines, so they dread.
@@ -924,24 +972,27 @@ Fun times ahead...
             Adapt or be led.
         </MDXWrapper>
     </GPT4Message>
-<br/>
--- Luke
 
-----------------
+<br />
+-- Luke
+<br />
+*PS: [TenetLang](https://github.com/tenetlang/tenetlang) now has a github repo, which I'll be updating
+as I continue to work on it with GPT-4. Open a PR or submit a feature request!*
+
+---
 
 ### WAIT
-
 
 If you stayed to the end you're probably cool and I'd like to connect.
 
 Please comment or subscribe below, follow me on [twitter](https://twitter.com/linkbechtel), or reach out through one of the other social links below.
-<br/>
+
+<br />
 ***A L S O...*** -- I'm currently looking for engaging work around LLMs & ML Systems.
 
 Check out my [projects](/projects), my [twitter](https://twitter.com/linkbechtel), my [linkedin](https://www.linkedin.com/in/luke-anthony-bechtel/), or my [github](https://github.com/Marviel) to see what I'm into.
-<br/>
+
+<br />
 Reach out :)
-<br/>
+<br />
 Stay curious
-
-
