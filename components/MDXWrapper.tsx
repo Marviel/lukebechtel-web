@@ -1,11 +1,11 @@
 import { MDXProvider } from '@mdx-js/react'
 
 interface MDXWrapperProps {
-    children: React.ReactNode;
+  children: React.ReactNode
 }
 
 const MDXWrapper: React.FC<MDXWrapperProps> = ({ children }) => {
-    return <MDXProvider>{children}</MDXProvider>;
-};
+  return <MDXProvider>{children}</MDXProvider>
+}
 
-export default MDXWrapper;
+export default MDXWrapper

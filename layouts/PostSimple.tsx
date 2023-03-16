@@ -1,7 +1,4 @@
-import {
-  ReactNode,
-  useState,
-} from 'react'
+import { ReactNode, useState } from 'react'
 
 import type { Blog } from 'contentlayer/generated'
 import { Comments } from 'pliny/comments'

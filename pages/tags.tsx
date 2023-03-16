@@ -1,8 +1,5 @@
 import { allBlogs } from 'contentlayer/generated'
-import {
-  GetStaticProps,
-  InferGetStaticPropsType,
-} from 'next'
+import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { getAllTags } from 'pliny/utils/contentlayer'
 import { kebabCase } from 'pliny/utils/kebabCase'
 

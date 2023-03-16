@@ -1,12 +1,6 @@
-import {
-  ReactNode,
-  useState,
-} from 'react'
+import { ReactNode, useState } from 'react'
 
-import type {
-  Authors,
-  Blog,
-} from 'contentlayer/generated'
+import type { Authors, Blog } from 'contentlayer/generated'
 import { Comments } from 'pliny/comments'
 import { CoreContent } from 'pliny/utils/contentlayer'
 
