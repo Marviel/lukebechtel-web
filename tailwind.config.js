@@ -73,13 +73,21 @@ module.exports = {
               paddingTop: '2px',
               paddingBottom: '2px',
               borderRadius: '0.25rem',
+              maxWidth: '10px'
             },
-            'code::before': {
-              content: 'none',
-            },
-            'code::after': {
-              content: 'none',
-            },
+            // 'code::before': {
+            //   content: 'none',
+            // },
+            // 'code::after': {
+            //   content: 'none',
+            // },
+            // pre: false,
+            // code: false,
+            // 'pre code': false,
+            // 'code::before': false,
+            // 'code::after': false,
+            // We 
+            p: false,
             details: {
               backgroundColor: theme('colors.gray.100'),
               paddingLeft: '4px',
@@ -101,6 +109,7 @@ module.exports = {
               color: theme('colors.gray.900'),
               borderLeftColor: theme('colors.gray.200'),
             },
+            'blockquote::before': false,
           },
         },
         dark: {
