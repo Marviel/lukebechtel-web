@@ -9,7 +9,7 @@ const siteMetadata = {
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://lukebechtel.com',
-  siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
+  siteRepo: 'https://github.com/Marviel/lukebechtel-web',
   siteLogo: '/static/images/luke/avatar.jpg',
   image: '/static/images/luke/avatar.jpg',
   socialBanner: '/static/images/twitter-card.png',
