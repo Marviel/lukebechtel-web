@@ -30,7 +30,7 @@ export default function Resume() {
           </u>{' '}
           or{' '}
           <u>
-            <Link href={'/projects'}>About</Link>
+            <Link href={'/about'}>About</Link>
           </u>{' '}
           for more info :{`)`}
         </i>
