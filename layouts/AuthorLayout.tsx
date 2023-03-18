@@ -46,6 +46,15 @@ export default function AuthorLayout({ children, content }: Props) {
               <SocialIcon kind="linkedin" href={linkedin} />
               <SocialIcon kind="twitter" href={twitter} />
             </div>
+            <div style={{ padding: '10px' }}>
+              <iframe
+                src="https://github.com/sponsors/Marviel/button"
+                title="Sponsor Marviel"
+                height="32"
+                width="114"
+                style={{ border: 0, borderRadius: '6px', transform: 'scale(.90)' }}
+              ></iframe>
+            </div>
           </div>
           <div className="prose max-w-none pt-8 pb-8 dark:prose-dark xl:col-span-2">{children}</div>
         </div>

@@ -45,6 +45,13 @@ const Header = () => {
             </Link>
           ))}
         </div>
+        <iframe
+          src="https://github.com/sponsors/Marviel/button"
+          title="Sponsor Marviel"
+          height="32"
+          width="114"
+          style={{ border: 0, borderRadius: '6px' }}
+        ></iframe>
         <ThemeSwitch />
         <MobileNav />
       </div>

@@ -7,20 +7,20 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 // You might need to insert additional domains in script-src if you are using external services
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app https://buttons.github.io;
   style-src 'self' 'unsafe-inline';
-  img-src * blob: data:;
+  img-src * blob: data: https://avatars.githubusercontent.com;
   media-src 'none';
   connect-src *;
   font-src 'self';
-  frame-src giscus.app
+  frame-src giscus.app https://github.com
 `
 
 const securityHeaders = [
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
   {
     key: 'Content-Security-Policy',
-    value: ContentSecurityPolicy.replace(/\n/g, ''),
+    value: ContentSecurityPolicy.replace(/\n/g, ``),
   },
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy
   {
@@ -70,6 +70,15 @@ module.exports = () => {
         {
           source: '/(.*)',
           headers: securityHeaders,
+        },
+      ]
+    },
+    async redirects() {
+      return [
+        {
+          source: '/cv',
+          destination: '/resume',
+          permanent: true,
         },
       ]
     },
