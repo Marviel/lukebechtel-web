@@ -6,7 +6,10 @@ import { BlogNewsletterForm } from 'pliny/ui/NewsletterForm'
 import { Pre } from 'pliny/ui/Pre'
 import { TOCInline } from 'pliny/ui/TOCInline'
 
+import { AGQSectionHeader } from './agq/AGQSectionHeader'
+import CustomAside from './CustomAside'
 import Image from './Image'
+import { ImageWithCaption } from './ImageWithCaption'
 import CustomLink from './Link'
 import MDXWrapper from './MDXWrapper'
 import GPT4Message from './messages/GPT4Message'
@@ -22,6 +25,9 @@ export const MDXComponents: ComponentMap = {
   Image,
   TOCInline,
   a: CustomLink,
+  aside: CustomAside,
+  CustomAside,
+  AGQSectionHeader,
   pre: Pre,
   wrapper: Wrapper,
   BlogNewsletterForm,
@@ -29,4 +35,5 @@ export const MDXComponents: ComponentMap = {
   LukeMessage,
   Thread,
   MDXWrapper,
+  ImageWithCaption,
 }

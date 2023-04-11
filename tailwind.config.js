@@ -73,7 +73,7 @@ module.exports = {
               paddingTop: '2px',
               paddingBottom: '2px',
               borderRadius: '0.25rem',
-              maxWidth: '10px'
+              maxWidth: '10px',
             },
             // 'code::before': {
             //   content: 'none',
@@ -86,8 +86,12 @@ module.exports = {
             // 'pre code': false,
             // 'code::before': false,
             // 'code::after': false,
-            // We 
-            p: false,
+            // We
+            p: {
+              marginTop: '0px',
+              marginBottom: '.75rem',
+            },
+            // p: false,
             details: {
               backgroundColor: theme('colors.gray.100'),
               paddingLeft: '4px',
@@ -110,13 +114,19 @@ module.exports = {
               borderLeftColor: theme('colors.gray.200'),
             },
             'blockquote::before': false,
+            aside: {
+              borderColor: theme('colors.gray.200'),
+              borderRadius: '0.5rem',
+              borderWidth: '1px',
+              borderStyle: 'solid',
+            },
           },
         },
         dark: {
           css: {
             color: theme('colors.gray.300'),
             a: {
-              color: theme('colors.primary.500'),
+              color: theme('colors.gray.400'),
               '&:hover': {
                 color: `${theme('colors.primary.400')} !important`,
               },
@@ -167,9 +177,39 @@ module.exports = {
                 borderBottomColor: theme('colors.gray.700'),
               },
             },
+            line: {
+              borderColor: theme('colors.gray.700'),
+            },
             blockquote: {
               color: theme('colors.gray.100'),
               borderLeftColor: theme('colors.gray.700'),
+            },
+            aside: {
+              borderColor: theme('colors.gray.700'),
+              borderRadius: '0.5rem',
+              borderWidth: '1px',
+              borderStyle: 'solid',
+              padding: '1rem',
+            },
+            agq: {
+              color: 'rgba(202, 152, 73, 1)',
+              fontWeight: 'bold',
+            },
+            agqSk: {
+              color: 'rgb(94, 135, 201)',
+              fontWeight: 'bold',
+            },
+            agqOk: {
+              color: 'rgb(82, 158, 114)',
+              fontWeight: 'bold',
+            },
+            agqGk: {
+              color: 'rgb(186, 133, 111)',
+              fontWeight: 'bold',
+            },
+            agqWk: {
+              color: 'rgb(209, 87, 150)',
+              fontWeight: 'bold',
             },
           },
         },
