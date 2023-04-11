@@ -2,7 +2,7 @@
 import React from 'react'
 
 import { ComponentMap, MDXLayout } from 'pliny/mdx-components'
-import { BlogNewsletterForm } from 'pliny/ui/NewsletterForm'
+import { BlogNewsletterForm, NewsletterForm } from 'pliny/ui/NewsletterForm'
 import { Pre } from 'pliny/ui/Pre'
 import { TOCInline } from 'pliny/ui/TOCInline'
 
@@ -36,4 +36,5 @@ export const MDXComponents: ComponentMap = {
   Thread,
   MDXWrapper,
   ImageWithCaption,
+  NewsletterForm,
 }
