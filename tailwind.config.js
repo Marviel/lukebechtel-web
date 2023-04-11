@@ -119,6 +119,7 @@ module.exports = {
               borderRadius: '0.5rem',
               borderWidth: '1px',
               borderStyle: 'solid',
+              padding: '1rem',
             },
           },
         },
