@@ -39,7 +39,7 @@ module.exports = {
           css: {
             color: theme('colors.gray.700'),
             a: {
-              color: theme('colors.primary.500'),
+              color: theme('colors.gray.600'),
               '&:hover': {
                 color: `${theme('colors.primary.600')} !important`,
               },
@@ -120,6 +120,26 @@ module.exports = {
               borderWidth: '1px',
               borderStyle: 'solid',
               padding: '1rem',
+            },
+            agq: {
+              color: 'rgba(202, 152, 73, 1)',
+              fontWeight: 'bold',
+            },
+            agqSk: {
+              color: 'rgb(94, 135, 201)',
+              fontWeight: 'bold',
+            },
+            agqOk: {
+              color: 'rgb(82, 158, 114)',
+              fontWeight: 'bold',
+            },
+            agqGk: {
+              color: 'rgb(186, 133, 111)',
+              fontWeight: 'bold',
+            },
+            agqWk: {
+              color: 'rgb(209, 87, 150)',
+              fontWeight: 'bold',
             },
           },
         },
