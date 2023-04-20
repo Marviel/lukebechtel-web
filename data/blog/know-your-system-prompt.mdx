@@ -1,0 +1,143 @@
+---
+title: 'Learning From Machines: Know Thy Context'
+date: '2023-04-16'
+tags:
+  [
+    'learning-from-machines',
+    'psychology',
+    'gpt',
+    'gpt-4',
+    'agi',
+    'large-language-models',
+    'ai',
+    'ml',
+  ]
+draft: false
+summary: 'What messages are you feeding yourself?'
+---
+
+<h3
+  className="border-y py-4"
+  style={{ textAlign: 'center', fontStyle: 'italic', fontFamily: 'KaTeX_Math' }}
+>
+  "What messages are you feeding yourself?"
+</h3>
+<br />
+
+This morning, I pondered what if there might exist a useful analogue between a large language model's (LLM) context window and the human brain. I'll briefly summarize some key concepts in LLMs, and then use that to draw my analogy.
+
+---
+
+## Background
+
+You may know that LLMs like GPT-4 use messages to define their "context window". These messages can be user, assistant, or system messages. System messages are given the highest levels of attention, and thus more strongly influence the model's behavior. Assitant messages can shape the behavior of the agent as it tends to mimic its past behaviors, sometimes causing "behavioral lock-in." User messages are trained to influence the behavior of the model so long as they do not conflict with the system prompt. The art of crafting a history of input prompts is known as prompt engineering.
+
+Prompt engineering is (currently) crucial when using LLMs to generate relevant and accurate responses. To effectively "steer" an LLM, developers must be explicit with their requirements, ask for reasoning first, limit response length, refine prompts iteratively, and leverage system prompts. Additionally, LLMs have a constrained context window, which means developers must condense information, break down complex queries, and use follow-up prompts.
+
+To use a rough approximation, the context window is ~like Short-Term Memory, whereas the weights in the trained LLM are ~like its Long-Term Memory. Oftentimes (as in humans) the long-term memory recall of LLMs can be faulty and suffer from hallucinations, or out-of-date data. A small context window can also prevent LLMs from fully "seeing" the most relevant data for solving a particular problem.
+
+If you have enough data available, you can sometimes fine-tune the model to your particular dataset. However, this will not always work and relies on accurate "long term" recall ability.
+
+To better work with the sometimes-small context window of LLMs, you can automate some of the Prompt Engineering process. This generally involves using machine-automated retrieval mechanisms to help fetch ~probably relevant context, given the message history.
+
+Things like embedding-based vector stores, traditional search algorithms, or neural net classifiers can be used to preprocess large amounts (imagine thousands of documents) of possibly-relevant information into chunks. These chunks can then be searched over using sections of the context window, to find chunks that are considered ~probably relevant to creating the next message given the message history / context window.
+
+Each implementation of these mechanisms is imperfect, because it is impossible to know _fully_ which concepts the full-network would find most valuable without running the whole LLM, which is (usually) slower & more expensive. If you've read Kahneman, this may seem analogous to the relationship between System 1 (Fast / Weak) & System 2 (Slow / Powerful).
+
+---
+
+## Analogy: Messages & Experts
+
+We can find analogies for context windows, prompt engineering, and machine-automated context retrieval in humans, too.
+
+Let's imagine a simplified model of human processing, consisting primarily of:
+
+1. The **"human context window"** consisting of "observation", "memory", "thought", and "action" messages.
+2. A collection of **"niche experts"** in our heads, who are constantly scanning the context window for things that get them "excited".
+
+**"Observation"** messages represent data we _very_ recently (~100ms-1s) perceived in the world through our senses. An observation might be **_"this drink tastes sweet"_**, or **_"that's a bird call I know"_**, or **_"that car is moving fast"_**. These observations are oftentimes our best hint at "base reality", yet our senses are still not objective. There is quite a bit of compression that goes into constructing the observation message into a workable lower-complexity "snapshot" of the current world state, and this compression process leaves "artifacts" in the form of "optical illusions" and other easily observed perceptual flaws (though we should not make the mistake of thinking all perceptual flaws are easy to detect).
+
+In contrast to observations, items in our "thought" & "memory" messages are _exclusively_ populated via our "automated context retrieval" systems -- processing / retrieval / pattern-recognition systems we train over the course of our lives.
+
+**"Thought"** (or feeling) messages can be thought of as ~messages delivered moment to moment by different "niche experts". Some thoughts might be **_"Let's get another drink"_**, **_"I love this bird's song"_**, or **_"Don't cross the street yet."_** The "niche experts" deliver their thoughts (or don't) when they get "excited" or "bored" by certain primers in the message history that pertain to their particular "function". These "primers" are simply patterns in the "context window".
+
+When lots of an expert's primers are seen, they get excited and deliver a lot of messages i.e. "thoughts". When they're bored due to a lack of primers, they quiet down. This is somewhat analogous to LLMs giving high attention to certain tokens or phrases when they occur, and using them to key future expectations strongly.
+
+**"Action"** messages are the ways we act in the world. These actions can be "automatic" or "purposeful". Automatic actions are carried out by another kind of "niche expert" who specializes in that type of action.
+
+**"Memory"** messages are also delivered by "niche memory experts", but their primary task is highly focused on context-aware information retrieval. The line between memory and thought is not always abundantly clear, and this can be where much bias creeps into the system of information recall.
+
+Importantly, many of the other messages in the "human context window" are actually delivered by the "niche memory experts" -- who change our view of history moment-by-moment using ~specially annotated memory messages to indicate if it was a "thought" an "observation" or an "action" we took.
+
+These "niche memory experts" are analogous to machine-automated context retrieval mechanisms in LLMs, combined with the attention layer in LLMs, which filter out much of the noise of the lower-level systems to allow for a semi-coherent "train of thought" experience to emerge as in our example.
+
+---
+
+## Implications
+
+### Implication: Focus
+
+How can we use this analogy to help us?
+
+We can understand that each "niche expert", memory or otherwise, has primers which will get it excited, or make it bored. Knowing how to "invoke" a particular "expert" via priming yourself with keywords, mantras, audio / visual cues, or other multisensory primers can help you find the right "frame of mind" for performing high-fidelity recall & task-oriented thinking.
+
+We can also consider several common states of mind through the frame of "niche experts".
+
+When the "experts" are reinforcing each-other, backing each-other up, and are in general agreement about where senses, and actions should be directed -- we call that "focus". This has been an important state of mind for me to deeply consider, as I've too often suffered a lack of it.
+
+"Distraction" is the opposite situation -- where the "experts" disagree about where actions should be directed, and the thoughts / memories provided are not "reinforcing" eachother.
+
+We can help ourselves into "focus" and out of "distraction" by understanding that it's all about making sure the right "experts" are excited at the right time. This breaks down into (1) Recognizing what experts are relevant for a given "focus" (2) Energizing the relevant experts, and (3) De-energizing the irrelevant experts.
+
+(1) Building a "map" of which internal experts are most relevant for a given focus area is a life-long art. But the key skill in the practice of this art is the ability to try to spend periods of self-observation, where you try not to let the experts "babble" over eachother, and you can make out your individual "threads of thought".
+
+The most common practice to help build this map is meditation, which can take many forms, but usually consists of taking time to (a) stop dispatching "actions" and (b) reduce "excitement primers" for all your experts. This is easiest with the traditional technique of sitting comfortably still, eyes closed, in a quiet room. As long as you are conscious, it's inevitable that experts will get excited despite your efforts -- but the key as mentioned before is to allow yourself a state of mind that is relatively clutter-free, such that you can observe each "expert's" contributions, and make out roughly what got them "excited" to contribute a thought or memory in the first place. In this way, you start to build your map of which expert can contribute what kinds of thoughts or memories.
+
+Oftentimes, when going through this process, you'll see your experts provide silly thoughts, or recall memories that may seem strange or uncomfortable. It's important not to try to suppress the fact that this occurred, but rather to observe briefly the fact that it did. In trying to be as honest as you can about the history of your thoughts, you can allow yourself to build _another_ expert -- the "expert expert" -- which can provide you thoughts and memories relevant to the "expert picking" task we mentioned before.
+
+(2) Once you know which experts you want to keep active, you need to get them energized. To help with energizing the relevant experts for a given task, we can try to surround ourselves with as many context-specfic primers as we can. This is much easier when you know what your task is supposed to be. To energize the right assembly of experts for a task, we can ensure each expert is "primed" correctly with things that we know get it excited.
+
+To do this well, we we must also have gone through the process of self-reflection self-awareness to have recognized what "experts" we want to summon for a given task.
+
+(3) The easiest and most immediate way to prevent overexcited, off-topic experts from activating is to literally reduce the number of inputs you're taking in (observations). We really already covered this in the meditation section, but it's important to perform a "cleansing" of your environmental context window on a regular basis, to reduce the chance of distraction. This is why we wear headphones, prefer ad-free software, don't like lots of notifications, & tend to have simpler work environments.
+
+---
+
+### Implication: Product Design
+
+Understanding how our context window is composed of "messages" delivered by excited experts can help us understand many aspects of Product Design too.
+
+"Don't Make Me Think" (the classic handbook on UX design) in its very title explains the summary of the best design systems. Well designed products _work_ because their designers know which experts should be excited to keep the user 'in focus', and which experts should be kept 'bored'.
+
+That's really it -- providing the right "stimulation context" to keep the right experts excited, but not enough stimulation context to risk exciting the irrelevant experts.
+
+---
+
+### Implication: Open-Mindedness
+
+Knowing that our "memory experts" are in charge of our observation, action, and thought history can also help us navigate situations more even-handedly. If you're aware of the limitations of your context window, seeing your memory as a lossy compression of "reality," you'll tend to be more open-minded to alternative viewpoints.
+
+---
+
+### Implication: Behavioral Lock-In
+
+Finally, I would be remiss if I did not loop back around to the subject of "behavioral lock-in". In LLMs, behavioral lock-in can happen when a long conversation history is provided, in which the LLM may or may not be doing a good job if its task. Regardless, the LLM will tend to emulate patterns of its own past behavior based on the context window, even if it is in conflict with items in the system prompt.
+
+Perhaps the issue of behavioral lock-in can exist in humans too. If you are constantly priming your "Memory experts" to deliver ideas to you of how you have failed, or not measured up to the mark, then perhaps it will become a self-fulfilling prophecy. More tangibly -- your other "thought experts" will be more likely to "complete the pattern", and deliver to you thoughts / action suggestions which are in accordance with how you _used_ to behave.
+
+---
+
+## Conclusion
+
+There are many more concepts in this space I want to explore, and hope to do over time. Things like handling context switching, surrounding yourself with supportive people, breaking negative thought patterns. Additionally, I'd like explore the influence of factors like upbringing, environment, experiences, education, and genetics on our systems of default recall. I'd love to do a deeper dive on Product Design.
+
+If you're interested in more musings on this topic, please subscribe below.
+
+---
+
+> Author's Note:
+> This essay was originally much longer, but lower quality. I simplified it down by:
+>
+> (1) using GPT-4 in the OpenAI playground and giving it the system prompt "You are paul graham. Shorten and rewrite this essay in your style, making it only a few paragraphs."
+>
+> (2) Taking this shortened version, and expanding it again.
