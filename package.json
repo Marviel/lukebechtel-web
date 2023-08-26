@@ -19,6 +19,9 @@
     "contentlayer": "0.3.0",
     "esbuild": "0.17.11",
     "github-slugger": "^1.4.0",
+    "lodash": "4.17.21",
+    "matter-js": "0.14.0",
+    "matter-attractors": "0.1.6",
     "gray-matter": "^4.0.2",
     "image-size": "1.0.0",
     "mdx-bundler": "^9.0.0",
@@ -69,7 +72,9 @@
     "lint-staged": "^13.0.0",
     "prettier": "^2.7.0",
     "prettier-plugin-tailwindcss": "^0.2.2",
-    "typescript": "^4.8.3"
+    "typescript": "^4.8.3",
+    "@types/matter-js": "0.12.0",
+    "@types/lodash": "4.14.197"
   },
   "lint-staged": {
     "*.+(js|jsx|ts|tsx)": [
