@@ -74,7 +74,8 @@ export default function ValuesPage() {
     values.map((valueName, index) => {
       return {
         valueName,
-        rank: 10000,
+        rank: 1000,
+        numComparisons: 0,
       }
     })
   )
@@ -106,11 +107,13 @@ export default function ValuesPage() {
           return {
             ...ranking,
             rank: winnerNewELO,
+            numComparisons: ranking.numComparisons + 1,
           }
         } else if (index === loserIdx) {
           return {
             ...ranking,
             rank: loserNewELO,
+            numComparisons: ranking.numComparisons + 1,
           }
         } else {
           return ranking
@@ -120,11 +123,24 @@ export default function ValuesPage() {
 
     ////////////////////////////
     // Set players
-    const player1Idx = _.random(values.length - 1)
-    let player2Idx = _.random(values.length - 1)
 
+    // Get the values that have the lowest number of comparisons
+    const minNumComparisons = Math.min(...rankings.map((ranking) => ranking.numComparisons))
+    const leastComparedValues = rankings
+      .map((ranking, idx) => ({ ...ranking, idx }))
+      .filter((ranking) => ranking.numComparisons === minNumComparisons)
+
+    // Get two random values that have been least compared.
+    // If there are two values that have been least compared, then pick one of those two.
+    const player1Idx = _.sample(leastComparedValues)?.idx || _.random(values.length - 1)
+    let player2Idx = _.sample(leastComparedValues)?.idx || _.random(values.length - 1)
+
+    // If they are the same, repick.
     while (player1Idx === player2Idx) {
-      player2Idx = _.random(values.length - 1)
+      player2Idx =
+        leastComparedValues.length < 2
+          ? _.random(values.length - 1)
+          : _.sample(leastComparedValues).idx
     }
 
     setPlayers({
@@ -173,9 +189,19 @@ export default function ValuesPage() {
         <AccordionDetails suppressHydrationWarning>
           {_.sortBy(rankings, (a) => -a.rank).map((ranking, index) => {
             return (
-              <Stack suppressHydrationWarning key={index} direction={'row'} gap={2}>
-                <span>{ranking.rank}</span>
-                <span>{ranking.valueName}</span>
+              <Stack
+                suppressHydrationWarning
+                key={index}
+                direction={'row'}
+                gap={2}
+                justifyItems={'center'}
+                alignItems={'center'}
+              >
+                <span>{index + 1}.</span>
+                <Typography variant="h5">{ranking.valueName}</Typography>
+                <Typography variant="caption" fontStyle={'italic'}>
+                  (ELO: {ranking.rank.toFixed(2)}, # Games: {ranking.numComparisons})
+                </Typography>
               </Stack>
             )
           })}
