@@ -2,12 +2,14 @@ import { useState } from 'react'
 
 function TimeButton(props: { name: string; minutes: number; setTime: (time: number) => void }) {
   return (
-    <button
-      onClick={() => props.setTime?.(props.minutes)}
-      style={{ backgroundColor: 'grey', color: 'white', padding: '10px', borderRadius: '10px' }}
-    >
-      {props.name}
-    </button>
+    <div>
+      <button
+        onClick={() => props.setTime?.(props.minutes)}
+        style={{ backgroundColor: 'grey', color: 'white', padding: '10px', borderRadius: '10px' }}
+      >
+        {props.name}
+      </button>
+    </div>
   )
 }
 
@@ -34,17 +36,29 @@ export default function LifeSpendCalculator(props: {
         display: 'flex',
         flexDirection: 'column',
         gap: '10px',
+        gridTemplateColumns: 'auto',
         alignItems: 'center',
         backgroundColor: 'black',
         borderRadius: '10px',
         padding: '10px',
+        minWidth: '250px',
       }}
     >
       <p style={{ fontSize: '2em' }}>Life Spend Calculator</p>
       <p>
         How many minutes a day do you spend <b>{subjectName}</b>
       </p>
-      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px' }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
+          width: '100%',
+          justifyContent: 'center',
+          alignContent: 'center',
+          flexWrap: 'wrap',
+        }}
+      >
         <TimeButton name="🕐  5 minutes" minutes={5} setTime={setMinutes} />
         <TimeButton name="🕰️ 15 minutes" minutes={15} setTime={setMinutes} />
         <TimeButton name="🕑30 minutes" minutes={30} setTime={setMinutes} />
