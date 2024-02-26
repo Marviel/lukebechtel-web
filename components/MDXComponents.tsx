@@ -7,6 +7,7 @@ import { Pre } from 'pliny/ui/Pre'
 import { TOCInline } from 'pliny/ui/TOCInline'
 
 import { AGQSectionHeader } from './agq/AGQSectionHeader'
+import LifeSpendCalculator from './calculators/LifeSpendCalculator'
 import CustomAside from './CustomAside'
 import Image from './Image'
 import { ImageWithCaption } from './ImageWithCaption'
@@ -14,6 +15,7 @@ import CustomLink from './Link'
 import MDXWrapper from './MDXWrapper'
 import GPT4Message from './messages/GPT4Message'
 import LukeMessage from './messages/LukeMessage'
+import Message from './messages/Message'
 import Thread from './messages/Thread'
 
 export const Wrapper = ({ layout, content, ...rest }: MDXLayout) => {
@@ -33,8 +35,10 @@ export const MDXComponents: ComponentMap = {
   BlogNewsletterForm,
   GPT4Message,
   LukeMessage,
+  Message,
   Thread,
   MDXWrapper,
   ImageWithCaption,
   NewsletterForm,
+  LifeSpendCalculator,
 }
