@@ -25,7 +25,10 @@ export default function LifeSpendCalculator(props: {
   const minutesAMonthRounded = (minutes * 30).toFixed(2)
   const minutesAYearRounded = (minutes * 365).toFixed(0)
   const daysAYearRounded = ((minutes * 365) / 60 / 24).toFixed(1)
-  const workDaysAYearRounded = (minutes * (365 / 60 / 24) * 3).toFixed(1)
+  const daysAYearExcludingSleepRounded = ((minutes * 365) / 60 / 16).toFixed(1)
+
+  const numberOfWorkDaysAYear = 5 * 52
+  const workDaysAYearRounded = (minutes * (numberOfWorkDaysAYear / 60 / 8)).toFixed(1)
 
   const subjectName = props.subjectName ?? 'this'
   const onSubjectName = props.onSubjectName ?? 'on this'
@@ -45,7 +48,7 @@ export default function LifeSpendCalculator(props: {
       }}
     >
       <p style={{ fontSize: '2em' }}>Life Spend Calculator</p>
-      <p>
+      <p style={{ fontSize: '1.2em', textAlign: 'center' }}>
         How many minutes a day do you spend <b>{subjectName}</b>
       </p>
       <div
@@ -92,22 +95,35 @@ export default function LifeSpendCalculator(props: {
       {minutes ? (
         <>
           <p style={{ fontSize: '1.5em' }}>
-            You spend{' '}
+            <span style={{ opacity: '75%' }}>You spend </span>
             <u>
-              <b>~ {minutesAYearRounded} minutes a year</b>
+              <span style={{ opacity: '100%' }}>
+                <b>~ {minutesAYearRounded} minutes a year</b>
+              </span>
             </u>{' '}
             {onSubjectName}
           </p>
           <p style={{ fontSize: '1.5em' }}>
-            That's{' '}
+            <span style={{ opacity: '75%' }}>That's </span>
             <u>
-              <b>~ {daysAYearRounded} full days</b>
+              <b>~ {daysAYearRounded} days</b>
             </u>{' '}
             {onSubjectName}
           </p>
+          <p style={{ fontSize: '1.2em', opacity: '75%' }}>If you sleep ~8hrs a night,</p>
+          <p style={{ fontSize: '1.5em' }}>
+            <span style={{ opacity: '75%' }}>That's </span>
+            <u>
+              <b>~ {daysAYearExcludingSleepRounded} waking days</b>
+            </u>{' '}
+            {onSubjectName}
+          </p>
+          <p style={{ fontSize: '1em', opacity: '75%' }}>
+            If you work 5 days a week, 8 hours a day,
+          </p>
           {props.enableWorkdays ? (
             <p style={{ fontSize: '1.5em' }}>
-              That's{' '}
+              <span style={{ opacity: '75%' }}>That's </span>
               <u>
                 <b>~ {workDaysAYearRounded} work days</b>
               </u>{' '}
