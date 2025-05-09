@@ -35,7 +35,9 @@ This eagerness to help is generally a positive feature - but sometimes you just 
 
 ## "Readonly State"
 
-The "Readonly State" rule solves this problem by creating a discussion-only mode for your AI assistant:
+At [Reasonote](https://reasonote.com), we have a special "Readonly State" rule that allows you to explore ideas without triggering immediate implementation.
+
+The "Readonly State" rule creates a discussion-only mode for your AI assistant:
 
 ```
 If I begin or end my message with "RO" or "ro", activate "Readonly State". In this state:
@@ -184,6 +186,10 @@ Once your mental model is clear and you've chosen an approach, you simply say "G
 After the AI has created or modified code, you often want to understand certain aspects of the implementation:
 
 <Thread>
+    {/* <div>... Previous messages ...</div> */}
+    <FileChangeMessage fileName="src/components/AuthForm.jsx" added={15} removed={1} />
+    <FileChangeMessage fileName="src/services/authService.js" added={10} removed={0} />
+    <FileChangeMessage fileName="src/App.jsx" added={2} removed={0} />
     <UserMessage>
         <MDXWrapper>
             RO Why did you implement the authentication using JWT instead of sessions?
@@ -229,5 +235,13 @@ Next time you find yourself saying "Wait, I didn't want you to do that yet!" - r
 ---
 
 <div className="flex items-center justify-center pt-4">
-  <NewsletterForm title="Subscribe to the newsletter" />
+  {/* <NewsletterForm title="Subscribe to the newsletter" /> */}
+  <iframe
+    src="https://lukebechtel.substack.com/embed"
+    width="480"
+    height="320"
+    style={{ border: '1px solid #EEE', background: 'white' }}
+    frameborder="0"
+    scrolling="no"
+  ></iframe>
 </div>
