@@ -1,0 +1,223 @@
+---
+title: 'Cursor: Readonly Rules'
+date: '2023-12-05'
+tags: ['cursor', 'ai', 'workflows', 'productivity', 'cursor-rules']
+draft: false
+summary: 'How to make AI assistants think before they act with a simple cursorrule'
+---
+
+<h5
+  className="border-y py-4"
+  style={{ textAlign: 'center', fontStyle: 'italic', fontFamily: 'KaTeX_Math' }}
+>
+  "Think first."
+</h5>
+
+## The Problem: Overeager AI Assistance
+
+When working with AI assistants in code editors like Cursor / Windsurf, you've probably encountered this scenario:
+
+You casually mention "What about..." or "I wonder if..." and suddenly your AI is eagerly modifying files, creating new ones, and implementing a solution before you've had time to think through the problem.
+
+Often, this eagerness to jump in results in a worse implementation, because the requirements aren't abundantly clear. Further, the AI can sometimes make changes when you _don't want_ it to.
+
+This eagerness to help is generally a positive feature - but sometimes you just want to **explore ideas**, **ask questions**, **discuss architecture**, or **debug issues** without triggering immediate implementation.
+
+## "Readonly State"
+
+The "Readonly State" rule solves this problem by creating a discussion-only mode for your AI assistant:
+
+```
+If I begin or end my message with "RO" or "ro", activate "Readonly State". In this state:
+
+1. You must NOT modify files, create new files, or use edit_file/any file modification tools
+2. You MUST prefix your responses with [READONLY STATE]\n as a visual indicator
+3. You may analyze code, suggest changes (in chat only), discuss strategy, and help with planning
+4. You will only exit this state when I explicitly say "GO" or clearly request you to make specific file changes
+
+Readonly State is designed for thoughtful discussion and planning before implementation.
+```
+
+Setup in Cursor:
+
+1. Add a file at `[YOUR_PROJECT_ROOT]/.cursor/rules/readonly-state.mdc` with the above content
+1. Ensure the cursor rule is set as 'Always active'
+
+Setup in windsurf:
+
+1. Add a file at `[YOUR_PROJECT_ROOT]/.windsurf/rules/readonly-state.md` with the above content
+1. Ensure the rule is set as 'Always active'
+
+## When to Use Readonly State
+
+This rule is particularly useful when:
+
+- **Exploring multiple approaches** to a problem before committing to one
+- **Discussing architecture** or design patterns without premature implementation
+- **Debugging complex issues** where you want to analyze before making changes
+- **Learning about code concepts** without modifying your codebase
+- **Planning a major refactor** that requires careful consideration
+- **Asking for clarification** before proceeding with implementation
+
+## How It Works
+
+Simply include "RO" or "ro" at the beginning or end of your message to activate Readonly State:
+
+```
+RO What do you think about refactoring this component to use React hooks instead?
+```
+
+or
+
+```
+I'm wondering if we could improve the performance of this query ro
+```
+
+The AI will respond with "[READONLY STATE]\n\n" at the beginning of its message, signaling it's in planning mode. It will provide analysis, suggestions, and ideas - but critically, it will not make any file changes.
+
+When you're ready for implementation, simply say:
+
+```
+GO
+```
+
+or make a clear implementation request like:
+
+```
+Now implement the hook-based approach we discussed
+```
+
+## Benefits of the Readonly State Workflow
+
+**1. Reduces the need to undo premature changes**  
+When the AI jumps straight to implementation, you often need to revert changes that don't align with your goals.
+
+**2. Enables proper planning**  
+Complex problems require exploration before commitment. Readonly State creates space for that exploration.
+
+**3. Improves communication clarity**  
+By forcing a clear delineation between discussion and implementation, both you and the AI understand exactly which mode you're operating in.
+
+**4. Builds better mental models**  
+Discussion-first approaches help the AI build better mental models of your intentions before acting on them.
+
+**5. Keeps you in control**  
+You decide when it's time to move from planning to implementation, not the AI's eagerness to help.
+
+## Using Readonly State Effectively
+
+For best results:
+
+- Use RO when you're still in the "divergent thinking" phase
+- Switch out of RO when you're ready for "convergent thinking"
+- Be explicit about what you want the AI to focus on during RO discussions
+- Take advantage of the opportunity to explore multiple approaches
+
+## Real-world Scenarios Where Readonly Shines
+
+### Feature Planning: Thinking Before Building
+
+When starting a new feature, jumping straight into implementation often leads to rework later. You might have a general idea but need to explore the technical approach.
+
+<Thread>
+    <UserMessage>
+        <MDXWrapper>
+            RO I need to build a user authentication system for my React app. What are the key components I should consider?
+        </MDXWrapper>
+    </UserMessage>
+    <GenericAIMessage>
+        <MDXWrapper>
+            [READONLY STATE]
+
+            For a React authentication system, you'll want to consider several key areas such as the API, frontend components, security, and user experience. We can dive into specifics if you'd like.
+        </MDXWrapper>
+    </GenericAIMessage>
+    <UserMessage>
+        <MDXWrapper>
+            RO Let's go with JWT. How would the authentication flow work? What libraries should I consider?
+        </MDXWrapper>
+    </UserMessage>
+    <GenericAIMessage>
+        <MDXWrapper>
+            [READONLY STATE]
+
+            For JWT authentication in React, the typical flow involves token exchange and validation. Key libraries can help with this, and secure token storage is crucial. Ready to proceed with an example implementation?
+        </MDXWrapper>
+    </GenericAIMessage>
+    <UserMessage>
+        <MDXWrapper>
+            GO
+        </MDXWrapper>
+    </UserMessage>
+    <GenericAIMessage>
+        <MDXWrapper>
+            Alright, I'm on it! I'll implement the JWT authentication flow we discussed.
+        </MDXWrapper>
+    </GenericAIMessage>
+    <FileChangeMessage fileName="src/components/AuthForm.jsx" added={15} removed={1} />
+    <FileChangeMessage fileName="src/services/authService.js" added={10} removed={0} />
+    <FileChangeMessage fileName="src/App.jsx" added={2} removed={0} />
+    <GenericAIMessage>
+        <MDXWrapper>
+            I've set up the basic JWT authentication. We should definitely discuss more secure token storage strategies next!
+        </MDXWrapper>
+    </GenericAIMessage>
+
+</Thread>
+
+With Readonly State activated, the AI helps you map out the architecture, explore different auth providers, discuss security considerations, and recommend potential libraries—all without creating any files or writing any code prematurely.
+
+Once your mental model is clear and you've chosen an approach, you simply say "GO". The AI will then proceed with the implementation, typically confirming the changes made by summarizing the modified files and key alterations, as illustrated above.
+
+### Post-Implementation Review: Questions Without Changes
+
+After the AI has created or modified code, you often want to understand certain aspects of the implementation:
+
+<Thread>
+    <UserMessage>
+        <MDXWrapper>
+            RO Why did you implement the authentication using JWT instead of sessions?
+        </MDXWrapper>
+    </UserMessage>
+    <GenericAIMessage>
+        <MDXWrapper>
+            [READONLY STATE]
+
+            I chose JWT over sessions due to its statelessness, compatibility, and performance benefits for this kind of setup. However, sessions have their own advantages in other contexts.
+        </MDXWrapper>
+    </GenericAIMessage>
+    <UserMessage>
+        <MDXWrapper>
+            RO How can I improve the token storage security?
+        </MDXWrapper>
+    </UserMessage>
+    <GenericAIMessage>
+        <MDXWrapper>
+            [READONLY STATE]
+
+            To improve JWT token storage security, key strategies include avoiding localStorage, using httpOnly cookies, implementing a robust token refresh mechanism, and considering in-memory storage for access tokens.
+        </MDXWrapper>
+    </GenericAIMessage>
+
+</Thread>
+
+Without Readonly State, asking questions might trigger the AI to think you're unhappy with its choice and immediately start rewriting the code. But with RO activated, you can freely:
+
+- Ask clarifying questions about implementation choices
+- Learn about tradeoffs the AI considered
+- Understand how certain parts of the code work
+- Explore alternative approaches that might be better
+
+Often, the AI's first implementation is perfectly valid, and your questions are simply to understand it better. Readonly State keeps the AI in explanation mode, preventing premature or unnecessary changes while you're still absorbing the solution.
+
+---
+
+The Readonly State cursorrule is a simple but powerful way to improve your workflow with AI coding assistants. By creating a clear boundary between exploration and implementation, you gain the benefits of AI assistance while maintaining control of your development process.
+
+Next time you find yourself saying "Wait, I didn't want you to do that yet!" - remember to start with "RO".
+
+---
+
+<div className="flex items-center justify-center pt-4">
+  <NewsletterForm title="Subscribe to the newsletter" />
+</div>

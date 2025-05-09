@@ -1,5 +1,5 @@
 import Message from './Message'
 
-export default function LukeMessage({ children }: React.PropsWithChildren) {
+export default function UserMessage({ children }: React.PropsWithChildren) {
   return <Message isOwn>{children}</Message>
 }

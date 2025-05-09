@@ -5,12 +5,21 @@ import { theme } from '../../styles/theme'
 export interface MessageProps extends React.PropsWithChildren<any> {
   name?: string
   avatarUrl?: string
+  avatarText?: string
   date?: string
   isOwn?: boolean
   compact?: boolean
 }
 
-export default function Message({ name, avatarUrl, date, children, isOwn, compact }: MessageProps) {
+export default function Message({
+  name,
+  avatarUrl,
+  avatarText,
+  date,
+  children,
+  isOwn,
+  compact,
+}: MessageProps) {
   const endOrStart = isOwn ? 'end' : 'start'
   // Check if device is mobile the next.js way
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
@@ -31,16 +40,24 @@ export default function Message({ name, avatarUrl, date, children, isOwn, compac
         }}
       >
         <Stack direction="row" justifyContent={'start'} gap={1} sx={{ width: '100%' }}>
-          {!isOwn && (
+          {avatarUrl ? (
             <Avatar
               alt={name}
               src={avatarUrl && avatarUrl !== '' ? avatarUrl : undefined}
-              sx={{ width: avatarSize, height: avatarSize }}
-            />
-          )}
+              sx={{ width: avatarSize, height: avatarSize, textAlign: 'center' }}
+            >
+              {avatarText}
+            </Avatar>
+          ) : avatarText ? (
+            <div style={{ width: avatarSize, height: avatarSize }}>{avatarText}</div>
+          ) : null}
           <Stack>
-            <Typography variant="overline">{name}</Typography>
-            <Typography variant="body2">{children}</Typography>
+            <Typography variant="overline" fontWeight={'bold'}>
+              {name}
+            </Typography>
+            <Typography variant="body2" style={{ marginBottom: '0px' }}>
+              {children}
+            </Typography>
           </Stack>
         </Stack>
       </Card>
