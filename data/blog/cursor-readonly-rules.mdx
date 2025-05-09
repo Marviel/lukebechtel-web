@@ -146,7 +146,7 @@ When starting a new feature, jumping straight into implementation often leads to
     </GenericAIMessage>
     <UserMessage>
         <MDXWrapper>
-            RO Let's go with JWT. How would the authentication flow work? What libraries should I consider?
+            Let's go with JWT. How would the authentication flow work? What libraries should I consider?
         </MDXWrapper>
     </UserMessage>
     <GenericAIMessage>
@@ -204,7 +204,7 @@ After the AI has created or modified code, you often want to understand certain 
     </GenericAIMessage>
     <UserMessage>
         <MDXWrapper>
-            RO How can I improve the token storage security?
+            How can I improve the token storage security?
         </MDXWrapper>
     </UserMessage>
     <GenericAIMessage>
@@ -235,7 +235,34 @@ Next time you find yourself saying "Wait, I didn't want you to do that yet!" - r
 ---
 
 <div className="flex items-center justify-center pt-4">
-  {/* <NewsletterForm title="Subscribe to the newsletter" /> */}
+  <a
+    href="https://reasonote.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center rounded-full bg-teal-600 px-6 py-3 text-lg font-medium text-white no-underline hover:bg-teal-700 focus:outline-none"
+  >
+    <svg
+      className="mr-2 -ml-1 h-5 w-5"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+      />
+    </svg>
+    <span id="reasonote-btn" className="mb-0" style={{ color: 'white' }}>
+      {'Try Reasonote'}
+    </span>
+  </a>
+</div>
+
+<div className="flex items-center justify-center pt-4">
   <iframe
     src="https://lukebechtel.substack.com/embed"
     width="480"
