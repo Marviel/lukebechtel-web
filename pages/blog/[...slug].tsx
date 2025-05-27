@@ -2,7 +2,6 @@ import type { Blog } from 'contentlayer/generated'
 import { allAuthors, allBlogs } from 'contentlayer/generated'
 import { InferGetStaticPropsType } from 'next'
 import { MDXLayoutRenderer } from 'pliny/mdx-components'
-import { NewsletterForm } from 'pliny/ui/NewsletterForm'
 import { coreContent, sortedBlogPost } from 'pliny/utils/contentlayer'
 
 import { MDXComponents } from '@/components/MDXComponents'
@@ -71,9 +70,9 @@ export default function BlogPostPage({
         />
       )}
 
-      <div className="flex items-center justify-center pt-4">
+      {/* <div className="flex items-center justify-center pt-4">
         <NewsletterForm />
-      </div>
+      </div> */}
     </>
   )
 }
