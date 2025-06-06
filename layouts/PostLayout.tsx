@@ -33,7 +33,7 @@ interface LayoutProps {
 }
 
 export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
-  const { filePath, path, slug, date, title, tags } = content
+  const { filePath, path, slug, date, title, tags, headerImage } = content
   const basePath = path.split('/')[0]
   const [loadComments, setLoadComments] = useState(false)
 
@@ -58,6 +58,17 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               <div>
                 <PageTitle>{title}</PageTitle>
               </div>
+              {headerImage && (
+                <div style={{ marginTop: '1rem' }}>
+                  <Image
+                    src={headerImage}
+                    alt={title}
+                    width={1200}
+                    height={600}
+                    className="rounded-lg object-cover"
+                  />
+                </div>
+              )}
             </div>
           </header>
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0">

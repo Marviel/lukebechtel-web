@@ -1,8 +1,4 @@
-import {
-  ComputedFields,
-  defineDocumentType,
-  makeSource,
-} from 'contentlayer/source-files'
+import { ComputedFields, defineDocumentType, makeSource } from 'contentlayer/source-files'
 import path from 'path'
 import {
   extractTocHeadings,
@@ -57,6 +53,7 @@ export const Blog = defineDocumentType(() => ({
     layout: { type: 'string' },
     bibliography: { type: 'string' },
     canonicalUrl: { type: 'string' },
+    headerImage: { type: 'string' },
   },
   computedFields,
 }))
