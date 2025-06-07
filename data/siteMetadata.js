@@ -10,8 +10,8 @@ const siteMetadata = {
   theme: 'system', // system, dark or light
   siteUrl: 'https://lukebechtel.com',
   siteRepo: 'https://github.com/Marviel/lukebechtel-web',
-  siteLogo: '/static/images/luke/avatar.jpg',
-  image: '/static/images/luke/avatar.jpg',
+  siteLogo: '/static/images/luke/avatar.png',
+  image: '/static/images/luke/avatar.png',
   socialBanner: '/static/images/twitter-card.png',
   email: 'luke@lukebechtel.com',
   github: 'https://github.com/Marviel',
