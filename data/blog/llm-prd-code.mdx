@@ -61,7 +61,7 @@ Not implementation details.
 
 A **PRD**.
 
-Recent research on LLM-assisted development emphasizes that specifications are "the missing link" in making LLM code generation reliable. OpenAI seems to have noticed this pattern too. Their new Deep Research mode pauses to ask clarifying questions, tightening the problem definition before spending extra compute. Instead of torrenting answers, it builds understanding first. Imagine your coding assistant doing likewise: a quick interrogation that locks down scope, constraints, and must-haves, so the next burst of code is laser-focused instead of encyclopedic.
+Recent research on LLM-assisted development emphasizes that specifications are ["the missing link"](https://arxiv.org/html/2404.17842v1) in making LLM code generation reliable ([Pullum et al., 2020](https://sebokwiki.org/wiki/Verification_and_Validation_of_Systems_in_Which_AI_is_a_Key_Element)). OpenAI seems to have noticed this pattern too. Their new Deep Research mode pauses to ask clarifying questions, tightening the problem definition before spending extra compute. Instead of torrenting answers, it builds understanding first. Imagine your coding assistant doing likewise: a quick interrogation that locks down scope, constraints, and must-haves, so the next burst of code is laser-focused instead of encyclopedic.
 
 <img
   src="/images/chatgpt-clarification.png"
@@ -137,7 +137,7 @@ ONLY after user types "GO!" or explicitly approves:
 </details>
 
 1. **Context Window Ephemerality**
-   An LLM context window acts like a lens providing perspective to a large language model. The window keeps shifting to ensure a constant flow of information for an LLM as it engages with the user's prompts and inputs. When you start with a PRD, you're not burning precious context tokens on exploratory conversation. You're providing structured, dense information that the LLM can parse efficiently.
+   An LLM context window acts like a lens providing perspective to a large language model. The window keeps shifting to ensure a constant flow of information for an LLM as it engages with the user's prompts and inputs. When you start with a PRD, you're not burning precious context tokens on exploratory conversation. You're providing structured, dense information that the LLM can parse efficiently ([Batarseh et al., 2021](https://journalofbigdata.springeropen.com/articles/10.1186/s40537-021-00445-7)).
 
 2. **Interruptibility Without Information Loss**
    LLM development is often a solo endeavor, but it doesn't have to be. With a PRD, suddenly it's not single-player anymore. You can close your chat, go to lunch, come back, and hand the same PRD to a completely fresh context window — or to a human colleague. _The work persists beyond the ephemeral chat session._
@@ -189,13 +189,13 @@ I've noticed several specific improvements in my development workflow since adop
 
 **The Resumability Quotient:** I ended up abandoning projects when they went off course and felt like they required too much effort to get back on track. With PRDs, I can return to a project after a week and understand immediately not just what I was building, but why I made specific architectural decisions.
 
-**The Collaboration Unlock:** Never write a product requirements document by yourself – you should always have a developer with you and write it together. When you have a PRD, you can share it with teammates, get feedback, and iterate—all before burning expensive LLM context on half-formed ideas.
+**The Collaboration Unlock:** When you have a PRD, you can share it with teammates, get feedback, and iterate—all before burning expensive LLM context on half-formed ideas. This aligns with best practices in software engineering where requirements verification and validation is recognized as a critical process ([Hand & Khan, 2020](https://pmc.ncbi.nlm.nih.gov/articles/PMC7660449/)).
 
 ## VI.
 
 Critics might argue this approach stifles the exploratory nature of AI-assisted development. "Part of the magic," they say, "is the serendipitous discoveries that emerge from conversational programming."
 This fundamentally misunderstands what we're doing here. We're not eliminating exploration—we're documenting it. The LLM still suggests approaches you hadn't considered, still offers architectural insights, still catches edge cases. But now these discoveries get crystallized into the PRD, not lost in an endless chat scroll.
-Of course, there are pitfalls. As one LinkedIn article warns, "Beware GPT PRDs"—garbage in, garbage out still applies. But that's precisely why the conversation matters. The LLM doesn't write your PRD in isolation; it interviews you, challenges assumptions, and iterates based on your feedback.
+Of course, there are pitfalls. As Eugene Cherny warns in his LinkedIn article ["Product Managers: Beware GPT PRDs"](https://www.linkedin.com/pulse/product-managers-beware-gpt-prds-eugene-cherny-h3stc/)—garbage in, garbage out still applies. But that's precisely why the conversation matters. The LLM doesn't write your PRD in isolation; it interviews you, challenges assumptions, and iterates based on your feedback.
 Consider this actual exchange I had last week:
 
 <Thread>
@@ -296,7 +296,29 @@ The future of AI-assisted development isn't about better code generation. It's a
 
 ---
 
-**Acknowledgments:** This post was written with the assistance of Claude 3.5, but only after I created a detailed PRD outlining its structure, tone, and key arguments. The PRD is available [here](). All copy-paste errors, philosophical overreaches, and attempts at humor remain entirely my own.
+---
+
+## References & Further Reading
+
+**Academic Research:**
+
+- Dreossi, T., et al. (2024). ["Specifications: The missing link to making the development of LLM-based software more trustworthy"](https://arxiv.org/html/2404.17842v1). _arXiv preprint_.
+- Pullum, L., Freeman, L., & Huang, C. (2020). ["Verification and Validation of Systems in Which AI is a Key Element"](https://sebokwiki.org/wiki/Verification_and_Validation_of_Systems_in_Which_AI_is_a_Key_Element). _Systems Engineering Body of Knowledge_.
+- Batarseh, F. A., Freeman, L., & Huang, C. H. (2021). ["A survey on artificial intelligence assurance"](https://journalofbigdata.springeropen.com/articles/10.1186/s40537-021-00445-7). _Journal of Big Data_, 8(1), 1-30.
+- Hand, D. J., & Khan, S. (2020). ["Validating and Verifying AI Systems"](https://pmc.ncbi.nlm.nih.gov/articles/PMC7660449/). _Patterns_, 1(3), 100037.
+
+**Industry Resources:**
+
+- Cherny, E. (2024). ["Product Managers: Beware GPT PRDs"](https://www.linkedin.com/pulse/product-managers-beware-gpt-prds-eugene-cherny-h3stc/). _LinkedIn_.
+- Downie (2024). ["Product requirement document generation using LLM task oriented"](https://gist.github.com/Dowwie/151d8efea738ea486ddec9208ddb3a19). _GitHub Gist_.
+- Alward, R. (2024). ["Master the Blueprint: LLM Prompts for Perfect Product Requirements Documents (PRD)"](https://reeganalward.com/master-the-blueprint-llm-prompts-for-perfect-product-requirements-documents-prd-192b23835462). _Medium_.
+- Shoffstall, S. (2025). ["Revolutionizing Product Development: How AI is Transforming the PRD Process"](https://medium.com/@sean.shoffstall/revolutionizing-product-development-how-ai-is-transforming-the-prd-process-4dbb66cba77d). _Medium_.
+
+**Tools & Frameworks:**
+
+- [Magical PM](https://www.magical.pm/) - AI-powered product management platform
+- [GoGPractice.io](https://gopractice.io/skills/improving-product-quality-with-llm-guide/) - LLM-assisted product development guide
+- [Mustafa Kapadia's Substack](https://mustafakapadia.substack.com/p/writing-product-requirements-with) - Writing product requirements with AI
 
 ---
 
