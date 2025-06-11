@@ -1,0 +1,312 @@
+---
+title: 'LLM → PRD → Code: The Workflow That Actually Works'
+date: '2025-06-11'
+tags:
+  [
+    'ai',
+    'llm',
+    'prd',
+    'workflows',
+    'cursor',
+    'development',
+    'requirements',
+    'productivity',
+    'claude',
+    'chatgpt',
+    'openai',
+    'anthropic',
+  ]
+draft: false
+summary: 'How I Learned to Stop Worrying and Love the Product Requirements Document - why writing PRDs first transforms AI-assisted development from chaotic code generation into structured, resumable workflows.'
+---
+
+# LLM → PRD → Code: The Workflow That Actually Works
+
+<h5
+  className="border-y py-4"
+  style={{ textAlign: 'center', fontStyle: 'italic', fontFamily: 'KaTeX_Math' }}
+>
+  "Write the requirements first."
+</h5>
+
+## I.
+
+Consider the modern developer's predicament: You sit before your IDE, cursor blinking expectantly. The task is clear enough in your mind: implement a widget feature. You open your AI Agent of choice, and begin typing:
+
+> Create a widget that...
+
+30 minutes later, you're ten modules deep, with 49 files changed, and have iterated through six separate widget architectures, each one replete with handlers for edge cases you'll never encounter and optimizations for scale you'll never reach.
+
+You close the chat window. You open a new one.
+
+> Let me be more specific...
+
+<span style={{ fontSize: '2rem' }}>😮‍💨</span>
+
+Large language models feel like productivity cheat codes precisely because they'll happily expand a vague prompt into paragraphs of plausible code. The downside is the same enthusiasm: hallucinated APIs, over-engineering detours, and that sinking "how did we get here?" moment.
+
+The folk remedy — longer prompts, stricter system messages, endless _"you are an expert"_ preambles — misses the point. The older, humbler practice is still the cure: **write the requirements first**. Give the AI a crisp spec, and you get crisp output; give it a vibe, and you get a vibe back.
+
+## II.
+
+A product requirements document (PRD) is "a document containing all the requirements for a certain product" that "is written to allow people to understand what a product should do" ([Wikipedia](https://en.wikipedia.org/wiki/Product_requirements_document)). This terse or boring-looking definition conceals what might be the most underappreciated pattern in human-AI collaboration.
+
+What I'm proposing is deceptively simple: The _first_ thing you do with your LLM should be write a PRD.
+
+Not code.
+
+Not architecture discussions.
+
+Not implementation details.
+
+A **PRD**.
+
+Recent research on LLM-assisted development emphasizes that specifications are "the missing link" in making LLM code generation reliable. OpenAI seems to have noticed this pattern too. Their new Deep Research mode pauses to ask clarifying questions, tightening the problem definition before spending extra compute. Instead of torrenting answers, it builds understanding first. Imagine your coding assistant doing likewise: a quick interrogation that locks down scope, constraints, and must-haves, so the next burst of code is laser-focused instead of encyclopedic.
+
+<img
+  src="/images/chatgpt-clarification.png"
+  alt="ChatGPT asking clarifying questions before proceeding"
+/>
+*"I wish that LLMs would ask me, first, when they're uncertain about something..."* This differs from
+conventional AI-assisted development wisdom, which treats LLMs as code generators to be used when you're
+uncertain. "I need to implement X, let me ask Claude to write it." But this approach misunderstands both
+LLMs and good software development.
+
+The magic isn't in avoiding the LLM until you have requirements. The magic is in using the LLM to help you discover what your requirements actually are.
+
+## III.
+
+Let me share the Cursor rules that sparked this insight:
+
+<details>
+<summary><strong>Click to expand: Complete Cursor Rules</strong></summary>
+
+```markdown
+## Development Workflow: PRD → Code
+
+THESE INSTRUCTIONS ARE CRITICAL!
+
+They dramatically improve the quality of the work you create.
+
+### Phase 1: Requirements First
+
+When asked to implement any feature or make changes, ALWAYS start by asking:
+"Should I create a PRD for this task first?"
+
+IFF user agrees:
+
+- Create a markdown file in `.cursor/scopes/FeatureName.md`
+- Interview the user to clarify:
+- Purpose & user problem
+- Success criteria
+- Scope & constraints
+- Technical considerations
+- Out of scope items
+
+### Phase 2: Review & Refine
+
+After drafting the PRD:
+
+- Present it to the user
+- Ask: "Does this capture your intent? Any changes needed?"
+- Iterate until user approves
+- End with: "PRD looks good? Type 'GO!' when ready to implement"
+
+### Phase 3: Implementation
+
+ONLY after user types "GO!" or explicitly approves:
+
+- Begin coding based on the PRD
+- Reference the PRD for decisions
+- Update PRD if scope changes, but ask user first.
+
+### File Organization
+```
+
+.cursor/
+├── scopes/
+│ ├── FeatureName.md # Shared/committed PRDs
+│ └── .local/ # Git-ignored experimental PRDs
+│ └── Experiment.md
+
+```
+
+**Remember: Think first, ask clarifying questions, *then* code. The PRD is your north star.**
+```
+
+</details>
+
+1. **Context Window Ephemerality**
+   An LLM context window acts like a lens providing perspective to a large language model. The window keeps shifting to ensure a constant flow of information for an LLM as it engages with the user's prompts and inputs. When you start with a PRD, you're not burning precious context tokens on exploratory conversation. You're providing structured, dense information that the LLM can parse efficiently.
+
+2. **Interruptibility Without Information Loss**
+   LLM development is often a solo endeavor, but it doesn't have to be. With a PRD, suddenly it's not single-player anymore. You can close your chat, go to lunch, come back, and hand the same PRD to a completely fresh context window — or to a human colleague. _The work persists beyond the ephemeral chat session._
+
+3. **Version Control for Thought**
+   Git doesn't track your conversation with Claude. It can't diff your chat history. But it can track WidgetFeature.md, and more importantly, it can track how WidgetFeature.md evolves as your understanding deepens. You can push up the git branch with the PRD and let another colleague begin work immediately, with full context about what needs to be built and why.
+
+## IV.
+
+Here's where the magic happens. The cursorrules don't ask you to write a PRD alone in a text editor before engaging the LLM. They've weaponized the LLM's greatest strength—its ability to structure chaotic human thought—and turned it toward documentation rather than code generation.
+The workflow inverts beautifully:
+
+<Thread>
+  <UserMessage>
+    <MDXWrapper>I need to add a widget feature</MDXWrapper>
+  </UserMessage>
+  <GenericAIMessage>
+    <MDXWrapper>
+      I'll help you create a PRD for this. Let me ask some clarifying questions: - What type of
+      widget? - Who are the users? - What problem does this solve?
+    </MDXWrapper>
+  </GenericAIMessage>
+  <UserMessage>
+    <MDXWrapper>
+      [Answers questions, often discovering they hadn't thought through important aspects]
+    </MDXWrapper>
+  </UserMessage>
+  <GenericAIMessage>
+    <MDXWrapper>Based on your responses, here's a draft PRD...</MDXWrapper>
+  </GenericAIMessage>
+  <FileChangeMessage fileName=".cursor/scopes/WidgetFeature.md" added={1} removed={0} />
+  <UserMessage>
+    <MDXWrapper>Looks good, but modify the success criteria...</MDXWrapper>
+  </UserMessage>
+  <GenericAIMessage>
+    <MDXWrapper>
+      Now, based on this PRD, here's my implementation plan. Should I proceed?
+    </MDXWrapper>
+  </GenericAIMessage>
+</Thread>
+
+The blank page problem—that terrifying moment of not knowing how to start—evaporates. The LLM becomes your documentation assistant first, your coding assistant second.
+
+## V.
+
+I've noticed several specific improvements in my development workflow since adopting PRD-before-LLM:
+
+**The Disambiguation Effect:** Natural language is ambiguous; structured requirements less so. When I tell an LLM "make a search feature," it might reasonably assume I want fuzzy matching, autocomplete, search history, and real-time updates. When my PRD specifies "basic string matching on user names only," we skip the feature creep entirely.
+
+**The Resumability Quotient:** I ended up abandoning projects when they went off course and felt like they required too much effort to get back on track. With PRDs, I can return to a project after a week and understand immediately not just what I was building, but why I made specific architectural decisions.
+
+**The Collaboration Unlock:** Never write a product requirements document by yourself – you should always have a developer with you and write it together. When you have a PRD, you can share it with teammates, get feedback, and iterate—all before burning expensive LLM context on half-formed ideas.
+
+## VI.
+
+Critics might argue this approach stifles the exploratory nature of AI-assisted development. "Part of the magic," they say, "is the serendipitous discoveries that emerge from conversational programming."
+This fundamentally misunderstands what we're doing here. We're not eliminating exploration—we're documenting it. The LLM still suggests approaches you hadn't considered, still offers architectural insights, still catches edge cases. But now these discoveries get crystallized into the PRD, not lost in an endless chat scroll.
+Of course, there are pitfalls. As one LinkedIn article warns, "Beware GPT PRDs"—garbage in, garbage out still applies. But that's precisely why the conversation matters. The LLM doesn't write your PRD in isolation; it interviews you, challenges assumptions, and iterates based on your feedback.
+Consider this actual exchange I had last week:
+
+<Thread>
+    <UserMessage>
+        <MDXWrapper>
+            I need to implement user notifications
+        </MDXWrapper>
+    </UserMessage>
+    <GenericAIMessage>
+        <MDXWrapper>
+            I'll help you create a PRD for the notifications feature. First, let me understand your requirements better:
+
+            - What types of notifications do you need? (email, in-app, push?)
+            - What events trigger notifications?
+            - Do users need notification preferences?
+        </MDXWrapper>
+    </GenericAIMessage>
+    <UserMessage>
+        <MDXWrapper>
+            Oh, I hadn't thought about preferences...
+        </MDXWrapper>
+    </UserMessage>
+    <GenericAIMessage>
+        <MDXWrapper>
+            That's important for user experience. Let me draft a PRD that includes a preferences system...
+        </MDXWrapper>
+    </GenericAIMessage>
+
+</Thread>
+
+The serendipity remains. The exploration continues. But now it produces artifacts, not just ephemeral insights.
+
+## A Real-World A/B Test
+
+Let me show you the difference in practice. Here are two screenshots from the same AI assistant, handling the same request in two different ways:
+
+**The Old Way: Immediate Code Generation**
+
+<img
+  src="/images/llm-immediate-code.png"
+  alt="AI assistant immediately starting to make code changes for API route creation"
+/>
+
+**The New Way: PRD-First Approach**
+
+<img
+  src="/images/llm-prd-first.png"
+  alt="AI assistant asking clarifying questions and offering to create a PRD before making changes"
+/>
+
+The contrast is striking. In the first screenshot, the assistant immediately dives into implementation, spending 5 minutes generating code that may not match the user's actual needs. In the second, it pauses to understand requirements first.
+
+The time difference is telling: 5 minutes of potentially wasted implementation versus 30 seconds of clarifying questions that lead to the right solution. The PRD-first approach doesn't just produce better code—it respects your time and cognitive load.
+
+## VII.
+
+The real benefits of PRD-before-LLM reveal themselves in the mundane moments of development:
+
+**The Restart**: After some frustrating confusions with the LLM going in circles, I simply closed the chat window and opened a new one. No reconstructing context, no copy-pasting previous conversations. The PRD was there, patient and persistent. "Let's try this again, here's what we're building..."
+
+**The Handoff**: A coworker needed to take over a feature I'd started. Instead of a lengthy brain dump or "good luck understanding my chat history," I shared the scope file. They understood the intent and constraints immediately.
+
+**The Resurrection**: Months later, returning to a dormant branch. The old way: frantically searching through chat logs, trying to remember what I was thinking. The new way: `cat .cursor/scopes/FeatureName.md`. Oh right, _that's_ what we were building.
+
+**The Critique Advantage**: It's much, much easier to critique a proposed PRD than to draft one totally from scratch. PRDs follow a somewhat predictable structure, and the LLM knows that and can exploit it to immediately expand the surface area of your idea. "I need to add user authentication" becomes a structured document with sections for security requirements, user flows, session management, and edge cases you hadn't considered.
+
+The directory structure itself tells a story:
+
+```
+.cursor/
+├── scopes/
+│   ├── AuthenticationSystem.md
+│   ├── WidgetRefactor.md
+│   └── .local/
+│       └── ExperimentalParser.md
+└── .gitignore  # contains .local/
+```
+
+Scopes can be committed and shared with the team. The `.local/` folder houses your experimental ideas, private refactors, or that feature you're not quite ready to discuss yet. Git-ignored but still structured, still documented, still _real_.
+
+## VIII.
+
+There's a deeper philosophical point here about the nature of human-AI collaboration. My main complaint about these workflows is that it is largely a solo endeavor - i.e. the interfaces are all single player mode. The PRD-before-LLM pattern transforms AI assistance from a single-player game into a multiplayer one—even if the other players are future versions of yourself.
+This isn't just about organization or efficiency. It's about creating what Christopher Alexander would call a "pattern language" for AI-assisted development. The PRD becomes a boundary object, equally comprehensible to humans and AIs, present and future.
+
+## IX.
+
+The tooling is beginning to catch up to this methodology. We're seeing AI-powered PRD generators emerge—from ChatPRD to various Medium guides on "LLM Prompts for Perfect Product Requirements Documents." But most of these tools still assume you're using AI to generate documentation after you know what you want to build. They're missing the key insight: the PRD generation should be the first collaborative act between human and AI.
+Major companies are already moving in this direction. Shopify's approach to their Auto Write feature began with a comprehensive PRD that aligned AI capabilities with merchant needs. The pattern is becoming clear: successful AI features start with clear requirements, not clever prompts.
+Imagine the next generation: Git hooks that prevent commits without updated PRDs. Context windows that automatically prioritize requirement documents over implementation details. AI assistants that refuse to generate code until they've helped you articulate what you're actually trying to build.
+
+## X.
+
+A product requirements document is a resource for product managers to define what a new feature or product should do. In the age of AI-assisted development, every developer must become their own product manager—not in the sense of making business decisions, but in the sense of clearly articulating intent before implementation.
+The cursorrules I shared at the beginning aren't just process optimization. They're a recognition that the fundamental challenge of software development hasn't changed: the hardest part isn't writing code, it's knowing what code to write. LLMs are incredibly powerful at the former. The PRD-before-LLM pattern ensures we don't abdicate responsibility for the latter.
+Start your next feature with a PRD. Let your AI help you write it. Watch as your development velocity increases, your code quality improves, and—most importantly—your ability to context-switch without losing your mind returns.
+The future of AI-assisted development isn't about better code generation. It's about better requirement articulation. PRD before LLM. This is the way.
+
+---
+
+**Acknowledgments:** This post was written with the assistance of Claude 3.5, but only after I created a detailed PRD outlining its structure, tone, and key arguments. The PRD is available [here](). All copy-paste errors, philosophical overreaches, and attempts at humor remain entirely my own.
+
+---
+
+<div className="flex items-center justify-center pt-4">
+  <iframe
+    src="https://lukebechtel.substack.com/embed"
+    width="480"
+    height="320"
+    style={{ border: '1px solid #EEE', background: 'white' }}
+    frameborder="0"
+    scrolling="no"
+  ></iframe>
+</div>
