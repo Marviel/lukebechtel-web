@@ -20,6 +20,7 @@ tags:
 draft: false
 summary: 'How I Learned to Stop Worrying and Love the Spec - why writing Specs first transforms AI-assisted development from chaotic code generation into structured, resumable workflows.'
 headerImage: '/static/images/blog/vibe-specs.png'
+canonicalUrl: https://lukebechtel.com/blog/vibe-specs
 ---
 
 <h5 className="border-y py-4" style={{ textAlign: 'center', fontStyle: 'italic' }}>
@@ -27,6 +28,8 @@ headerImage: '/static/images/blog/vibe-specs.png'
     "It doesn't matter how quickly you can create something if it's useless"
   </span>
 </h5>
+
+## 0. Quick Start (2 minutes)
 
 <div
   style={{
@@ -42,11 +45,7 @@ headerImage: '/static/images/blog/vibe-specs.png'
   saves hours of confusion. Copy the cursor rules below and try it on your next feature.
 </div>
 
----
-
-## 0. Quick Start (2 minutes)
-
-**Do you just want to try it? Here's the fastest path:**
+**Just wanna try it? Here's the fastest path:**
 
 <br />
 
@@ -55,11 +54,21 @@ headerImage: '/static/images/blog/vibe-specs.png'
 <summary style={{cursor: 'pointer', padding: '10px'}}>👉 Expand for Quick Start Instructions</summary>
 <div style={{paddingLeft: '30px'}}>
 
-**1. Copy this into your Cursor settings**
+**1. Copy this into your [Cursor settings](https://docs.cursor.com/context/rules) (or your AI IDE of choice)**
 
 <details>
 
-<summary style={{ cursor: 'pointer' }}>📋 Copy These Instructions</summary>
+<summary
+  style={{
+    cursor: 'pointer',
+    fontSize: '20px',
+    background: 'gray',
+    padding: '10px',
+    borderRadius: '10px',
+  }}
+>
+  **📋 Copy These Instructions**
+</summary>
 
 ```markdown
 ## Development Workflow: Spec → Code
@@ -119,6 +128,8 @@ ONLY after user types "GO!" or explicitly approves:
 
 </details>
 
+<br />
+
 **2. Make sure the rules are labelled "Always Attached"**
 
 **3. Start a new chat and type:**
@@ -163,8 +174,9 @@ The LLM will then build exactly what you agreed on
 </details>
 
 <br />
+<br />
 
-If pasting AI rules from random strangers makes you uncomfortable, read on.
+If pasting AI rules from random strangers makes you uncomfortable, read on for some background.
 
 ## I. Vibe Coder's Lament
 
@@ -400,7 +412,7 @@ What does this do? Here's a before and after:
     <br/>
     <div
       style={{textAlign: 'center', display: 'flex', alignContent: 'center', justifyContent: 'center'}}>
-      <i>...continues for 5 hours</i>
+      <i>...continues for half a work-day</i>
     </div>
         <UserMessage>
         <MDXWrapper>
