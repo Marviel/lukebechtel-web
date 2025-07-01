@@ -1,0 +1,858 @@
+---
+title: 'Vibe Specs: Vibe Coding That Actually Works'
+date: '2025-07-01'
+tags:
+  [
+    'ai',
+    'llm',
+    'spec',
+    'workflows',
+    'cursor',
+    'windsurf',
+    'development',
+    'requirements',
+    'productivity',
+    'claude',
+    'chatgpt',
+    'openai',
+    'anthropic',
+  ]
+draft: false
+summary: 'How I Learned to Stop Worrying and Love the Spec - why writing Specs first transforms AI-assisted development from chaotic code generation into structured, resumable workflows.'
+headerImage: '/static/images/blog/vibe-specs.png'
+canonicalUrl: https://lukebechtel.com/blog/vibe-specs
+---
+
+<h5 className="border-y py-4" style={{ textAlign: 'center', fontStyle: 'italic' }}>
+  <span style={{ fontStyle: 'italic', fontFamily: 'KaTeX_Math' }}>
+    "It doesn't matter how quickly you can create something if it's useless"
+  </span>
+</h5>
+
+## 0. Quick Start (2 minutes)
+
+<div
+  style={{
+    padding: '1rem',
+    borderColor: 'gray',
+    borderRadius: '8px',
+    borderWidth: '1px',
+    marginBottom: '2rem',
+    marginTop: '2rem',
+  }}
+>
+  <strong>TL;DR:</strong> Make your AI write requirements before code. It takes 5 extra minutes and
+  saves hours of confusion. Copy the cursor rules below and try it on your next feature.
+</div>
+
+**Just wanna try it? Here's the fastest path:**
+
+<br />
+
+<details>
+
+<summary style={{cursor: 'pointer', padding: '10px'}}>👉 Expand for Quick Start Instructions</summary>
+<div style={{paddingLeft: '30px'}}>
+
+**1. Copy this into your [Cursor settings](https://docs.cursor.com/context/rules) (or your AI IDE of choice)**
+
+<details>
+
+<summary
+  style={{
+    cursor: 'pointer',
+    fontSize: '20px',
+    background: 'gray',
+    padding: '10px',
+    borderRadius: '10px',
+  }}
+>
+  **📋 Copy These Instructions**
+</summary>
+
+```markdown
+## Development Workflow: Spec → Code
+
+THESE INSTRUCTIONS ARE CRITICAL!
+
+They dramatically improve the quality of the work you create.
+
+### Phase 1: Requirements First
+
+When asked to implement any feature or make changes, ALWAYS start by asking:
+"Should I create a Spec for this task first?"
+
+IFF user agrees:
+
+- Create a markdown file in `.cursor/scopes/FeatureName.md`
+- Interview the user to clarify:
+- Purpose & user problem
+- Success criteria
+- Scope & constraints
+- Technical considerations
+- Out of scope items
+
+### Phase 2: Review & Refine
+
+After drafting the Spec:
+
+- Present it to the user
+- Ask: "Does this capture your intent? Any changes needed?"
+- Iterate until user approves
+- End with: "Spec looks good? Type 'GO!' when ready to implement"
+
+### Phase 3: Implementation
+
+ONLY after user types "GO!" or explicitly approves:
+
+- Begin coding based on the Spec
+- Reference the Spec for decisions
+- Update Spec if scope changes, but ask user first.
+
+### File Organization
+
+\`\`\`
+
+.cursor/
+├── scopes/
+│ ├── FeatureName.md # Shared/committed Specs
+│ └── .local/ # Git-ignored experimental Specs
+│ └── Experiment.md
+
+\`\`\`
+
+**Remember: Think first, ask clarifying questions, _then_ code. The Spec is your north star.**
+
+(source: https://lukebechtel.com/blog/vibe-speccing)
+```
+
+</details>
+
+<br />
+
+**2. Make sure the rules are labelled "Always Attached"**
+
+**3. Start a new chat and type:**
+
+```
+"Help me add user authentication to my app"
+```
+
+**4. Follow the AI Through Spec Creation**
+
+The AI will:
+
+- ❓ Ask smart questions you hadn't considered
+- 📝 Write a clear requirements document
+- ✅ Wait for your approval
+
+_Example questions it might ask:_
+
+- "Will users log in with email or username?"
+- "Do you need password reset functionality?"
+- "Should sessions expire?"
+
+You're free to edit this for as long as you'd like.
+
+The LLM won't write code until you say you want it!
+
+**5. Authorize Code**
+
+Once you're happy, you can authorize the LLM to go (just say "go!").
+
+The LLM will then build exactly what you agreed on
+
+**That's it!** You just experienced Vibe Speccing.
+
+⏱️ **Time invested:** 5 minutes writing requirements  
+💰 **Time saved:** Hours of wrong implementations
+
+<div style={{textAlign: 'center', marginTop: '20px'}}>
+👇 Keep reading to understand why this works
+</div>
+</div>
+</details>
+
+<br />
+<br />
+
+If pasting AI rules from random strangers makes you uncomfortable, read on for some background.
+
+## I. Vibe Coder's Lament
+
+Consider the modern predicament: You sit before your IDE, cursor blinking expectantly. The task is clear enough in your mind: implement a widget. You open your AI Agent of choice, and begin typing:
+
+> Create a widget that...
+
+30 minutes later, you're ten modules deep, with 49 files changed, and have iterated through six separate widget architectures, each one replete with handlers for edge cases you'll never encounter and optimizations for scale you'll never reach.
+
+You close the chat window. You open a new one.
+
+> Let me be more specific...
+
+<span style={{ fontSize: '2rem' }}>😮‍💨</span>
+
+Sound familiar?
+
+LLMs will happily expand a vague prompt into paragraphs of plausible code. Hundreds of memes make fun of the low-quality "slop software" that comes from lazy prompting -- but even the best-intentioned programmers still run into issues where the AI spends a lot of time building features that didn't align with their original intentions:
+
+> [@karpathy](https://x.com/karpathy/status/1915581920022585597):
+> Noticing myself adopting a certain rhythm in AI-assisted coding (i.e. code I actually and professionally care about, contrast to vibe code).
+>
+> ...
+>
+> **_The emphasis is on keeping a very tight leash on this new over-eager junior intern savant with encyclopedic knowledge of software, but who also bullshits you all the time, has an over-abundance of courage and shows little to no taste for good code. And emphasis on being slow, defensive, careful, paranoid, and on always taking the inline learning opportunity, not delegating. Many of these stages are clunky and manual and aren't made explicit or super well supported yet in existing tools. We're still very early and so much can still be done on the UI/UX of AI assisted coding._**
+
+There are many folk remedies for this; longer prompts, stricter system messages, chains / trees of thought, endless _"you are an expert"_ preambles. These remedies have their place. But they're all nuanced, flaky, and complicated to implement. The average developer just wants something fire-and-forget -- and who can blame them?
+
+_AI was supposed to be easier_!
+
+Besides, these are all bandaids. The real problem, the _real_ reason that so much AI-generated software kinda sucks is much simpler: **_the AI doesn't understand the problem you're solving, because you didn't adequately explain the problem's context._**
+
+### Context Engineering
+
+<div style={{marginBottom: '10px', gap: '10px', display: 'flex', flexDirection: 'column'}}>
+<div style={{borderRadius: '8px', border: '1px solid gray', padding: '0px', overflow: 'hidden'}}>
+    <img
+        style={{margin: 0}}
+        src="/static/images/tobi-context-engineering.png"
+        alt="@tobi: I really like the term “context engineering” over prompt engineering. It describes the core skill better: the art of providing all the context for the task to be plausibly solvable by the LLM."
+        padding="0"
+        margin="0"
+    />
+</div>
+
+<div style={{borderRadius: '8px', border: '1px solid gray', padding: '0px', overflow: 'hidden',}}>
+    <img
+        style={{margin: 0}}
+        src="/static/images/karpathy-context-engineering-short.png"
+        alt='@karpathy: +1 for "context engineering" over "prompt engineering".'
+        padding="0"
+        margin="0"
+    />
+</div>
+</div>
+[source, @karpathy to @tobi on X](https://x.com/karpathy/status/1937902205765607626)
+
+There's a growing understanding that _"prompt engineering"_ isn't a sufficient term for what working with LLMs actually requires. As Andrej Karpathy recently noted in response to Tobias Lütke, **_"Context Engineering"_** better captures the sophisticated orchestration involved.
+
+Karpathy Elaborates:
+
+> People associate prompts with short task descriptions you'd give an LLM in your day-to-day use. When in every industrial-strength LLM app, context engineering is the delicate art and science of filling the context window with just the right information for the next step. Science because doing this right involves task descriptions and explanations, few shot examples, RAG, related (possibly multimodal) data, tools, state and history, compacting... Too little or of the wrong form and the LLM doesn't have the right context for optimal performance. Too much or too irrelevant and the LLM costs might go up and performance might come down. Doing this well is highly non-trivial. And art because of the guiding intuition around LLM psychology of people spirits.
+
+[source, @karpathy to @tobi on X](https://x.com/karpathy/status/1937902205765607626)
+
+Too little context and the LLM flails. Too much and it gets lost, or expensive. It's about finding that sweet spot.
+
+Perhaps what Karpathy is saying here about _LLM Applications_ could also improve our day-to-day use.
+
+> And art because of the guiding intuition around LLM psychology of people spirits.
+
+_"People Spirits"_... it is kinda like that, isn't it?
+
+Hmmm... maybe this problem isn't really so new?
+
+### Manager Brain
+
+The _very_ same issues come up when delegating tasks to human workers, too.
+
+The way we solve this with humans, is to write a concise set of **_specs_** (AKA **_requirements_** / **_PRDs_**), answering basic questions:
+
+- _What is the objective?_
+- _What determines success?_
+- _What tools should we use to achieve the objective?_
+- _What is out-of-scope?_
+- _How will we know when we're finished?_
+
+And indeed, with AI, it turns out that this older, humbler practice is still the cure: **write the specs first**.
+
+Give the AI a crisp spec, and you get crisp, consistent output; give it a vibe, and you get a vibe back.
+
+**_"But specs are hard to write!"_** -- you complain.
+
+Ah yes, **_they used to be_**... until recently...
+
+## II. The Modest Proposal
+
+I know what you're thinking:
+
+> _Ugh, great, more documentation I have to write. Just what I needed._
+
+But here's the thing - **_you don't write the Spec; the LLM does._**
+
+Your job is to critique, tweak, and clarify.
+
+The multi-turn Spec construction process naturally guides you toward giving the LLM exactly what it needs. The Vibe Specs pattern helps you fall into the pit of success with context engineering.
+
+And here's the best part: you don't even have to remember to do it. Just paste my cursor rules (below) once, and your AI will automatically ask to create a Spec before writing any code.
+
+**Make your LLM write a spec before it codes.**
+
+That's it. That's the whole trick.
+
+**_The *first* thing you do with your LLM should be to write a Spec, not Code._**
+
+### Workflow
+
+<img
+  src="/static/images/vibe-speccing-diagram.png"
+  alt="A diagram showing the vibe speccing workflow"
+/>
+<i>Don't worry -- it's even less complex than it seems</i>
+
+<details style={{border: '1px solid white'}}>
+<summary style={{cursor: 'pointer', padding: '10px'}}>(Click to expand): <strong style={{fontSize: '25px'}}>Complete Cursor Rules (Copy This!)</strong></summary>
+
+```markdown
+## Development Workflow: Spec → Code
+
+THESE INSTRUCTIONS ARE CRITICAL!
+
+They dramatically improve the quality of the work you create.
+
+### Phase 1: Requirements First
+
+When asked to implement any feature or make changes, ALWAYS start by asking:
+"Should I create a Spec for this task first?"
+
+IFF user agrees:
+
+- Create a markdown file in `.cursor/scopes/FeatureName.md`
+- Interview the user to clarify:
+- Purpose & user problem
+- Success criteria
+- Scope & constraints
+- Technical considerations
+- Out of scope items
+
+### Phase 2: Review & Refine
+
+After drafting the Spec:
+
+- Present it to the user
+- Ask: "Does this capture your intent? Any changes needed?"
+- Iterate until user approves
+- End with: "Spec looks good? Type 'GO!' when ready to implement"
+
+### Phase 3: Implementation
+
+ONLY after user types "GO!" or explicitly approves:
+
+- Begin coding based on the Spec
+- Reference the Spec for decisions
+- Update Spec if scope changes, but ask user first.
+
+### File Organization
+
+\`\`\`
+
+.cursor/
+├── scopes/
+│ ├── FeatureName.md # Shared/committed Specs
+│ └── .local/ # Git-ignored experimental Specs
+│ └── Experiment.md
+
+\`\`\`
+
+**Remember: Think first, ask clarifying questions, _then_ code. The Spec is your north star.**
+
+(source: https://lukebechtel.com/blog/vibe-speccing)
+```
+
+</details>
+
+1. Add a new rule for your AI Code Helper of Choice (Cursor, Windsurf, Claude Code, etc)
+2. Make sure the rule is _"Always Attached"_
+3. Start a New AI Chat
+4. Let the AI guide you through Spec creation
+5. ???
+6. Profit
+
+### Example
+
+What does this do? Here's a before and after:
+
+**BEFORE (Immediate Code Generation)**
+
+<Thread>
+    <UserMessage>
+        <MDXWrapper>
+            help me create an API route that handles search functionality
+        </MDXWrapper>
+    </UserMessage>
+    <GenericAIMessage>
+        <MDXWrapper>
+            I'll create a search API route for you. Let me implement this with a basic search endpoint that can handle query parameters.
+        </MDXWrapper>
+    </GenericAIMessage>
+    <FileChangeMessage fileName="pages/api/search.js" added={45} removed={0} />
+    <FileChangeMessage fileName="utils/searchHelpers.js" added={28} removed={0} />
+    <FileChangeMessage fileName="lib/database.js" added={15} removed={3} />
+    <GenericAIMessage>
+        <MDXWrapper>
+            I've implemented a comprehensive search API with:
+            - Full-text search across multiple fields
+            - Pagination support
+            - Fuzzy matching for typos
+            - Search result ranking
+            - Caching layer for performance
+            
+            The endpoint supports filtering by category, date range, and custom fields. Would you like me to add search analytics tracking as well?
+        </MDXWrapper>
+    </GenericAIMessage>
+    <UserMessage>
+        <MDXWrapper>
+            ok first of all this isn't working
+
+            secondly you used several systems we don't have access to, like:
+
+            ...
+        </MDXWrapper>
+    </UserMessage>
+    <br/>
+    <div
+      style={{textAlign: 'center', display: 'flex', alignContent: 'center', justifyContent: 'center'}}>
+      <i>...continues for half a work-day</i>
+    </div>
+        <UserMessage>
+        <MDXWrapper>
+            ***deletes branch in frustration***
+        </MDXWrapper>
+    </UserMessage>
+
+</Thread>
+
+<br />
+
+**AFTER (Spec-First)**
+
+<Thread>
+    <UserMessage>
+        <MDXWrapper>
+            help me create an API route that handles search functionality
+        </MDXWrapper>
+    </UserMessage>
+    <GenericAIMessage>
+        <MDXWrapper>
+            I'd be happy to help you create a search API route!
+            
+            
+            Before I start coding, should I create a spec for this task first?
+            
+            
+            This will help us clarify exactly what kind of search functionality you need.
+        </MDXWrapper>
+    </GenericAIMessage>
+    <UserMessage>
+        <MDXWrapper>
+            Yes, let's do that
+        </MDXWrapper>
+    </UserMessage>
+    <GenericAIMessage>
+        <MDXWrapper>
+            Great! Let me ask a few questions to understand your search requirements:
+
+            1. What will users be searching? (products, blog posts, users, etc.)
+            2. What fields should be searchable? (title only, title + description, everything?)
+            3. Do you need any filters? (category, date range, price range, etc.)
+            4. What about search features?
+               - Exact match only or fuzzy/partial matching?
+               - Case sensitive or insensitive?
+               - Do you need autocomplete/suggestions?
+            5. Performance requirements?
+               - Expected search volume?
+               - Need for caching?
+               - Response time targets?
+            6. What database/search solution are you using?:  (PostgreSQL, Elasticsearch, etc.)
+        </MDXWrapper>
+    </GenericAIMessage>
+    <UserMessage>
+        <MDXWrapper>
+            We're searching blog posts. Just title and content fields, case-insensitive partial matching is fine. No filters needed yet. Using PostgreSQL. This is for a small blog, so performance isn't critical.
+        </MDXWrapper>
+    </UserMessage>
+    <GenericAIMessage>
+        <MDXWrapper>
+            Perfect! Let me create a spec for this search functionality:
+        </MDXWrapper>
+    </GenericAIMessage>
+    <FileChangeMessage fileName=".cursor/scopes/blog-search-api.md" added={35} removed={0} />
+    <GenericAIMessage>
+        <MDXWrapper>
+            I've created a spec for your blog search API.
+
+            Does this capture your intent? Any changes needed?
+        </MDXWrapper>
+    </GenericAIMessage>
+    <UserMessage>
+        <MDXWrapper>
+            Looks perfect! GO!
+        </MDXWrapper>
+    </UserMessage>
+    <GenericAIMessage>
+        <MDXWrapper>
+            Excellent! Now I'll implement the search API based on our spec.
+        </MDXWrapper>
+    </GenericAIMessage>
+    <FileChangeMessage fileName="pages/api/search.js" added={24} removed={0} />
+    <GenericAIMessage>
+        <MDXWrapper>
+            I've implemented a clean, focused search API that matches our spec exactly:
+
+            ✅ Simple ILIKE queries on title and content
+
+            ✅ Case-insensitive partial matching
+
+            ✅ Returns title, excerpt, and URL
+
+            ✅ Limits to 20 results
+
+            ✅ Title matches ranked higher
+
+            The implementation is just 24 lines of focused code.
+
+            Want me to add a simple test file as well?
+        </MDXWrapper>
+    </GenericAIMessage>
+
+</Thread>
+
+<br />
+
+My original instructions kind of _sucked_, didn't they?
+
+But because we were vibe speccing, it didn't matter!
+
+In the Spec-First approach, we account for this type of under-specified problem. The LLM will ask us follow up questions, and ensure it's building the right thing, before it jumps in.
+
+The contrast is striking. In the first screenshot, the assistant immediately dives into implementation, spending 5 minutes generating code that may not match the user's actual needs. In the second, it pauses to understand requirements first.
+
+The Spec-first approach doesn't just produce better code, it respects your time and cognitive load.
+
+### Benefits
+
+Why do this? Doesn't this just take a lot of extra time on the front end?
+
+Aren't we trying to _move fast & break things_?
+
+Well, no. Slow is smooth, and smooth is fast.
+
+_It doesn't matter how quickly you can create something if it's useless._
+
+Here are the key problems I've noticed with traditional LLM workflows, and how a Spec-first approach solves them:
+
+1. **Chat Drift → Stable Documentation**
+
+   - **Problem**: Exploratory Chat histories necessarily include the exploration and correction of many blind alleys. These turns of conversation would confuse anyone -- and LLMs are no exception.
+
+   - **Solution**: A Spec document remains stable, even as the chat context changes. Reset the chat window. Change models. Switch IDEs. It doesn't matter; the Spec is just a document in your codebase, like any other file. You're providing structured, dense information that the LLM can parse efficiently ([Batarseh et al., 2021](https://journalofbigdata.springeropen.com/articles/10.1186/s40537-021-00445-7)).
+
+2. **Solo Coding → Team Sport**
+
+   - **Problem**: LLM development is often a solo endeavor because chat histories are ephemeral and personal. You can't easily hand off work to a colleague or pick up where someone else left off without lengthy explanations.
+
+   - **Solution**: With a Spec, suddenly it's not single-player anymore. You can close your chat, go to lunch, come back, and hand the same Spec to a completely fresh context window — or to a human colleague. _The work persists beyond the ephemeral chat session._
+
+3. **No Version Control → Git-Tracked Requirements**
+
+   - **Problem**: Git doesn't track your AI conversations. It can't diff your chat history. When requirements evolve or team members need context, there's no systematic way to track the evolution of your thinking.
+
+   - **Solution**: Git can track `WidgetFeature.md`, and more importantly, it can track how `WidgetFeature.md` evolves as your understanding deepens. You can push up the git branch with the Spec and let another colleague begin work immediately, with full context about what needs to be built and why.
+
+4. **Feature Creep → Defined Scope**
+
+   - **Problem**: Natural language can be very ambiguous. There's a reason that legalese exists. When you tell an LLM "make a search feature," it might reasonably assume you want fuzzy matching, autocomplete, search history, and real-time updates, or it might assume you want none of these.
+
+   - **Solution**: When your Spec specifies "basic string matching on user names only," you skip the feature creep entirely. Structured requirements are less ambiguous than conversational requests.
+
+5. **Lost Context → Instant Resume**
+
+   - **Problem**: Projects go off course and feel like they require too much effort to get back on track, leading to abandonment.
+
+   - **Solution**: With Specs, you can return to a project after a week and understand immediately not just what you were building, but why you made specific architectural decisions.
+
+6. **Blank Page Paralysis → Structured Start**
+
+   - **Problem**: That terrifying moment of not knowing how to start a feature or project.
+
+   - **Solution**: The LLM becomes your documentation assistant first, your coding assistant second. It's much easier to critique a proposed Spec than to draft one from scratch.
+
+7. **Token Waste → Efficient Context**
+
+   - **Problem**: Burning precious context tokens on exploratory conversation instead of focused implementation.
+
+   - **Solution**: You're providing structured, dense information that the LLM can parse efficiently, leading to more focused and relevant responses.
+
+## III. The Evidence
+
+I have three sources of evidence that this is the most effective way to use LLMs -- personal anecdata, academic research, and industry examples.
+
+### Personal Results
+
+#### My Interview With the CTO
+
+I recently had a fun interview with the CTO of a leading bay area AI Startup.
+
+Part of the interview process was an open-ended real-world coding task, to assess how well I could use AI coding tools. (Which was _so much more fun and realistic_ than leetcode...)
+
+I had 45 minutes to write a fairly complex webserver. Spending the first 5 minutes writing a Spec let me finish _20 minutes early_, with a _perfect implementation_.
+
+Here's roughly how I spent my time:
+
+- 5 minutes writing the Spec with the LLM.
+- 10 minutes writing the code with the LLM.
+- 5 minutes validating the code.
+- 20 minutes asking the CTO questions.
+
+Not bad, eh?
+
+#### My Day-To-Day
+
+In my own development:
+
+- **Before Spec**: I would often spend 2-3 hours implementing something, then realizing I built the wrong thing
+- **After Spec**: I spend about 10-20 minutes planning each feature, and 1 hour implementing correctly
+- **Time saved**: I estimate that I have a ~60% reduction in feature development time, and I come out with a better result far more often.
+
+In my personal experience, implementing my simple cursorrule has saved me **_literally days_** of back-and-forth with LLMs.
+
+### Academic Evidence
+
+Academia seems to be catching on -- Recent research on LLM-assisted development emphasizes that specifications are ["the missing link"](https://arxiv.org/html/2404.17842v1) in making LLM code generation reliable ([Pullum et al., 2020](https://sebokwiki.org/wiki/Verification_and_Validation_of_Systems_in_Which_AI_is_a_Key_Element)).
+
+### Industry Validation
+
+If you prefer an industry example, how about [OpenAI](https://openai.com)? They seem to have noticed this pattern too. Their [new Deep Research mode](https://openai.com/index/introducing-deep-research/) pauses to ask _clarifying questions_, tightening the problem definition before spending extra compute. Instead of torrenting answers, it builds understanding first. Imagine your coding assistant doing likewise: a quick interrogation that locks down scope, constraints, and must-haves, so the next burst of code is laser-focused instead of encyclopedic.
+
+<div style={{ borderRadius: '10px', overflow: 'hidden', padding: '0px' }}>
+  <img
+    src="/static/images/chatgpt-clarification.png"
+    alt="ChatGPT Deep Research asking clarifying questions before proceeding"
+    style={{ margin: 0 }}
+  />
+</div>
+
+This differs from conventional AI-assisted development wisdom, which treats LLMs as code generators to be used when you're uncertain. "I need to implement X, let me ask Claude to write it." But this approach misunderstands both LLMs and good software development.
+
+The magic isn't in avoiding the LLM until you have requirements. The magic is in using the LLM to help you discover what your requirements actually are.
+
+As another example, Shopify's approach to their Auto Write feature began with a comprehensive Spec that aligned AI capabilities with merchant needs.
+
+The pattern is becoming clear: successful AI features start with clear requirements, not clever prompts.
+
+## IV. The Critique
+
+### "gotta go fast"
+
+A common objection, **"But I'm prototyping/in a hackathon/need to move fast!"**
+
+Even for prototypes, 5 minutes of Spec saves hours of refactoring.
+
+**\*It doesn't matter how quickly you can create something if it's useless.\*\***
+
+### Garbage-in, Garbage-out
+
+Of course, this does require you to give valid input.
+
+It requires you to be somewhat present at the wheel.
+
+But that's precisely why the conversation matters. The LLM doesn't write your Spec in isolation; it interviews you, challenges assumptions, and iterates based on your feedback.
+
+## V. Final Thoughts
+
+In the age of AI-assisted development, every dev will become their own product manager.
+
+The hardest part isn't writing the code anymore -- it's knowing _what code to write_. LLMs are incredibly powerful at the former. The Vibe Specs pattern ensures we don't abdicate responsibility for the latter.
+
+Start your next feature with a Spec. Let your AI help you write it. Watch as your development velocity increases, your code quality improves, and—most importantly—your ability to context-switch without losing your mind returns.
+
+The future of AI-assisted development isn't about better code generation. It's about better requirement articulation. LLM -> Spec -> Code. This is the way.
+
+<div
+  style={{
+    padding: '1rem',
+    borderColor: 'gray',
+    borderRadius: '8px',
+    borderWidth: '1px',
+    marginBottom: '2rem',
+    marginTop: '2rem',
+  }}
+>
+  <h3 style={{ marginTop: 0 }}>Try It Now (5 Minutes)</h3>
+  <ol style={{ textAlign: 'left', maxWidth: '400px' }}>
+    <li>Copy the cursor rules</li>
+    <li>Open your IDE</li>
+    <li>Type: "Help me create [your next feature]"</li>
+    <li>Watch the magic happen</li>
+  </ol>
+  <p style={{ marginTop: '1rem', fontWeight: 'bold' }}>LLM -> Spec -> Code.</p>
+  <p>This is the way.</p>
+</div>
+
+### Share Your Story
+
+Tried vibe speccing? I'd love to hear about it:
+
+- 🐦 Tweet your experience: [@linkbechtel](https://twitter.com/linkbechtel) #VibeSpecs
+- 📧 Email: luke@lukebechtel.com
+
+The best stories will be featured in a follow-up post (with permission).
+
+---
+
+<details>
+<summary style={{cursor: 'pointer', fontSize: "30px", borderRadius: '10px', padding: '10px'}}>FAQ</summary>
+<div style={{padding: '15px'}}>
+### Does this work with ChatGPT/Claude/other AI tools?
+
+**Yes!** While the examples use Cursor, the Spec-first approach works with any AI coding assistant:
+
+- **ChatGPT**: Add the rules to Custom Instructions
+- **Claude**: Include in your Project instructions
+- **Windsurf/Continue/Cody**: Add to their respective config files
+- **Raw API calls**: Include in your system prompt
+
+The key is making the Spec request automatic, not optional.
+
+### How is this different from traditional documentation?
+
+Traditional documentation is written _after_ implementation to explain what was built. Specs are written _before_ implementation to clarify what _should_ be built. Think of Specs as a conversation with your future self (and your AI) about intent, while docs are a record of what actually happened.
+
+### What if I'm working on existing code?
+
+Even better! Specs are incredibly valuable for modifications:
+
+- "Refactor auth system" → Spec clarifies which parts change and which stay
+- "Fix performance issue" → Spec defines success metrics and constraints
+- "Add feature to legacy code" → Spec documents assumptions and integration points
+
+The AI can analyze existing code and help write Specs that respect current architecture.
+
+### Isn't this just waterfall development with extra steps?
+
+No! This is still iterative. The difference:
+
+- **Waterfall**: Spend weeks on massive requirement docs, then code for months
+- **This approach**: Spend 5-10 minutes per feature, iterate on Spec as you learn
+- Specs can be updated mid-implementation when you discover new constraints
+- Each feature gets its own mini-Spec, not one giant document
+
+### How detailed should Specs be?
+
+Match detail to complexity and risk:
+
+- **Simple bug fix**: 3-5 bullet points
+- **New feature**: 1-2 pages
+- **Architecture change**: 2-5 pages with diagrams
+- **Greenfield project**: Start with high-level Spec, create sub-Specs for each component
+
+Rule of thumb: If explaining to a new team member would take 5+ minutes, write a Spec.
+
+### What if the AI writes a bad Spec?
+
+That's exactly why you review it! Common issues:
+
+- **Too vague**: Ask for specific success criteria
+- **Too complex**: Break into smaller features
+- **Wrong assumptions**: Correct them before coding starts
+- **Missing context**: Add domain knowledge the AI lacks
+
+Remember: You're the architect, the AI is your drafting assistant.
+
+### Can I use this for non-coding tasks?
+
+Absolutely! I use it for blog posts.
+
+This pattern works for any complex task:
+
+- Writing blog posts (Spec = outline)
+- Creating presentations (Spec = key messages)
+- Planning projects (Spec = project charter)
+- Designing systems (Spec = design doc)
+
+The principle remains: clarify intent before execution.
+
+### How do I convince my team to adopt this?
+
+Start with yourself:
+
+1. Use it solo for a week
+2. Share a particularly good Spec/result with your team
+3. Offer to write Specs for shared features
+4. Track your velocity improvement
+5. Let results speak for themselves
+
+Don't mandate it -- let people opt in as they see the benefits.
+
+### What about truly exploratory coding?
+
+Sometimes you genuinely don't know what you're building until you build it. For true exploration:
+
+1. Write an "Exploration Spec" that defines what you're trying to learn
+2. Set time bounds and success criteria for the exploration
+3. After exploring, write a proper Spec for the real implementation
+
+Even exploration benefits from lightweight structure.
+
+### Do Specs slow down hot fixes?
+
+For true emergencies, skip the Spec. But after the fire is out:
+
+1. Write a retroactive Spec documenting what you did and why
+2. Use it to plan the proper fix (hot fixes are rarely the best solution)
+3. Prevent similar emergencies by addressing root causes in the Spec
+
+Most "emergencies" aren't—they're just poorly defined problems.
+
+### Where do I store Specs in my project?
+
+The suggested structure:
+
+```
+.cursor/
+├── scopes/
+│   ├── feature-name.md      # Committed specs
+│   └── .local/              # Git-ignored experiments
+│       └── experiment.md
+```
+
+But adapt to your team's workflow. The key is consistency and discoverability.
+
+</div>
+</details>
+
+---
+
+## References & Further Reading
+
+**Academic Research:**
+
+- Dreossi, T., et al. (2024). ["Specifications: The missing link to making the development of LLM-based software more trustworthy"](https://arxiv.org/html/2404.17842v1). _arXiv preprint_.
+- Pullum, L., Freeman, L., & Huang, C. (2020). ["Verification and Validation of Systems in Which AI is a Key Element"](https://sebokwiki.org/wiki/Verification_and_Validation_of_Systems_in_Which_AI_is_a_Key_Element). _Systems Engineering Body of Knowledge_.
+- Batarseh, F. A., Freeman, L., & Huang, C. H. (2021). ["A survey on artificial intelligence assurance"](https://journalofbigdata.springeropen.com/articles/10.1186/s40537-021-00445-7). _Journal of Big Data_, 8(1), 1-30.
+- Hand, D. J., & Khan, S. (2020). ["Validating and Verifying AI Systems"](https://pmc.ncbi.nlm.nih.gov/articles/PMC7660449/). _Patterns_, 1(3), 100037.
+
+**Industry Resources:**
+
+- Downie (2024). ["Product requirement document generation using LLM task oriented"](https://gist.github.com/Dowwie/151d8efea738ea486ddec9208ddb3a19). _GitHub Gist_.
+- Alward, R. (2024). ["Master the Blueprint: LLM Prompts for Perfect Product Requirements Documents (Spec)"](https://reeganalward.com/master-the-blueprint-llm-prompts-for-perfect-product-requirements-documents-Spec-192b23835462). _Medium_.
+- Shoffstall, S. (2025). ["Revolutionizing Product Development: How AI is Transforming the Spec Process"](https://medium.com/@sean.shoffstall/revolutionizing-product-development-how-ai-is-transforming-the-Spec-process-4dbb66cba77d). _Medium_.
+
+**Tools & Frameworks:**
+
+- [Magical PM](https://www.magical.pm/) - AI-powered product management platform
+- [GoGPractice.io](https://gopractice.io/skills/improving-product-quality-with-llm-guide/) - LLM-assisted product development guide
+- [Mustafa Kapadia's Substack](https://mustafakapadia.substack.com/p/writing-product-requirements-with) - Writing product requirements with AI
+
+---
+
+<div className="flex items-center justify-center pt-4">
+  <iframe
+    src="https://lukebechtel.substack.com/embed"
+    width="480"
+    height="320"
+    style={{ border: '1px solid #EEE', background: 'white' }}
+    frameborder="0"
+    scrolling="no"
+  ></iframe>
+</div>

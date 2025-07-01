@@ -19,12 +19,13 @@ export default function Message({
   children,
   isOwn,
   compact,
+  showName = false,
 }: MessageProps) {
   const endOrStart = isOwn ? 'end' : 'start'
   // Check if device is mobile the next.js way
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
-  const avatarSize = isMobile ? '20px' : '25px'
-  const extraPadding = isMobile ? '5px' : '10px'
+  const avatarSize = isMobile ? '25px' : '30px'
+  const extraPadding = isMobile ? '10px' : '15px'
 
   return (
     <Stack width={isMobile ? '95%' : '90%'} alignSelf={endOrStart}>
@@ -39,7 +40,7 @@ export default function Message({
           alignSelf: endOrStart,
         }}
       >
-        <Stack direction="row" justifyContent={'start'} gap={1} sx={{ width: '100%' }}>
+        <Stack direction="row" justifyContent={'start'} gap={0.5} sx={{ width: '100%' }}>
           {avatarUrl ? (
             <Avatar
               alt={name}
@@ -50,11 +51,17 @@ export default function Message({
             </Avatar>
           ) : avatarText ? (
             <div style={{ width: avatarSize, height: avatarSize }}>{avatarText}</div>
-          ) : null}
-          <Stack>
-            <Typography variant="overline" fontWeight={'bold'}>
+          ) : (
+            <Avatar sx={{ width: avatarSize, height: avatarSize, textAlign: 'center' }}>
               {name}
-            </Typography>
+            </Avatar>
+          )}
+          <Stack>
+            {showName && (
+              <Typography variant="overline" fontWeight={'bold'}>
+                {name}
+              </Typography>
+            )}
             <Typography variant="body2" style={{ marginBottom: '0px' }}>
               {children}
             </Typography>
