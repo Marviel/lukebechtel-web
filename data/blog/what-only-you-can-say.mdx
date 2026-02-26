@@ -1,0 +1,181 @@
+---
+title: 'What Only You Can Say'
+date: '2026-02-25'
+tags:
+  ['ai', 'writing', 'claude', 'interviews', 'productivity', 'workflows', 'creativity', 'anthropic']
+draft: false
+summary: 'How AI interviews produce better first drafts than AI writing ever could.'
+headerImage: '/static/images/blog/claude-ferns.png'
+canonicalUrl: https://lukebechtel.com/blog/what-only-you-can-say
+---
+
+<h5 className="border-y py-4" style={{ textAlign: 'center', fontStyle: 'italic' }}>
+  <span style={{ fontStyle: 'italic', fontFamily: 'KaTeX_Math' }}>
+    "How AI interviews produce better first drafts than AI writing ever could."
+  </span>
+</h5>
+
+Some of my best ideas have come from conversations I wasn't planning to have. A friend asks a question I wasn't expecting, and as I answer, something clicks — I articulate an idea I didn't know I had. The insight was there. It just needed the right question to surface it.
+
+This happens to me a lot. My best thinking doesn't arrive all at once. It coalesces gradually — across walks, showers, 2 AM notes-to-self, half-finished paragraphs scattered across a dozen documents. I suspect this is partly an ADHD thing, but I also think it's just how a lot of people's minds work. The raw material is there, distributed across time and context, waiting to be collected.
+
+<div className="flex items-center justify-center py-4">
+  <iframe
+    src="https://lukebechtel.substack.com/embed"
+    width="480"
+    height="150"
+    style={{ border: '1px solid #EEE', background: 'white' }}
+    frameBorder="0"
+    scrolling="no"
+  ></iframe>
+</div>
+
+I'm not saying fragmented thinking is a virtue — the [evidence on what shrinking attention spans are doing to us](https://www.anxiousgeneration.com/research/the-evidence) is genuinely alarming. But you have to do what you can, with what you have, [where you are](https://www.gutenberg.org/ebooks/3335).
+
+The problem is that writing demands coherence. A blog post isn't a scrapbook. And the gap between "I have many interesting thoughts on this topic" and "here is a clear, structured piece about it" is where most of my drafts have gone to die. As Paul Graham has [observed](http://www.paulgraham.com/essay.html), the shape of your thinking as it naturally occurs — associative, tangential, full of half-thoughts — is not the same shape that communicates well to others.
+
+> In a real essay you're writing for yourself. You're thinking out loud. But not quite. Just as inviting people over forces you to clean up your apartment, writing something that other people will read forces you to think well. So it does matter to have an audience. The things I've written just for myself are no good. They tend to peter out. When I run into difficulties, I find I conclude with a few vague questions and then drift off to get a cup of tea.
+>
+> — Paul Graham
+
+Published writing needs structure, narrative, a throughline. These are two different modes of thought, and the chasm between them can feel daunting.
+
+So I started doing something that changed my writing process: before I write anything, I have a professional podcaster interview me about the concept.
+
+Well — the interviewer is actually an AI. But the idea holds. It turns out that AI is _very_ good at interviewing. If prompted well, it asks the questions a sharp editor would ask, it doesn't let you off the hook when your answer is vague, and it's uniquely available at 2 AM when the idea strikes.
+
+Close readers might remember I wrote about a related idea in [Vibe Specs](https://lukebechtel.com/blog/vibe-speccing) — using AI-driven specs to bring structure to software development. This post is an extension of that technique beyond code. The same principle — clarify your thinking before you create a first draft — turns out to apply to writing of all kinds: blog posts, essays, product briefs, even important emails.
+
+After many variations on the theme, I've learned that _The Interview_ is the strongest way to clarify.
+
+## How It Works
+
+The process is simple. Like any good interview, you first set a basic scope. Ramble to the AI for a sentence, or a paragraph, or two about what you want to write or think about — the topic, the angle, who it's for, whatever comes to mind. Don't worry about structure. Just get the rough shape of the idea out. (A good scope-setting ramble includes who it's for and what you want them to walk away thinking — but even a messy one works.)
+
+Then, instead of asking the AI to summarize or write anything on your behalf, you ask it to _interview you_ about the subject. Ask the questions a good editor or podcast host would ask. One at a time.
+
+Then you just answer. You ramble. You tell stories. You contradict yourself and correct the contradiction. You say "actually, the real point is —" and then you find the real point.
+
+The interview log itself is the artifact. It's a record of your thinking on the subject — elicited, and oftentimes more expansive and in-depth than you might have allowed yourself to go unprompted. It's a loose, fuzzy search across everything you know about the topic. Once that's done, you can cut, trim, and edit down to the core of what you want to say. But it's all in your words.
+
+From there, you have options: you can write the piece yourself using the interview as an outline, or you can ask the AI to produce a first draft from your answers. Either way, the hard work — the thinking — already happened in the interview.
+
+The loop: **rough idea → AI interview → write → repeat**
+
+What comes out of this process is not something you publish as-is. It's the raw material, organized. The AI isn't your publisher; it's closer to an editor who sits you down, asks the right questions, and then hands you back your own thoughts in a shape you can work with. The real writing still happens when you sit down to write. But you're refining _your_ ideas in _your_ voice, not trying to reshape someone else's guesses into something that sounds like you.
+
+## An Example
+
+Here's one from the writing of this very post. I had the AI interview me about the concept of interview-driven writing (ha), and several questions in, it asked something about why this works better than just sitting down and writing. As I answered, one thought pinged off another, and I suddenly remembered that Graham quote above — about how writing for yourself is fundamentally different from writing for others. I'd read that years ago, but it hadn't connected to this topic until the question pulled it out of me.
+
+That insight became a central thread in this piece. I didn't sit down knowing it belonged here. The interview drew it out. That's the thing about good questions — they push you into semantic space you wouldn't have wandered into on your own, and sometimes the most important idea for your piece is sitting there, waiting for the right prompt.
+
+## Why It Works
+
+So what's actually happening here? There are a few things going on at once.
+
+First, the mechanical advantage. Answering a question is _cognitively easier_ than deciding what to write next. When you face a blank page, you're solving three problems at once: what to say, how to structure it, and what order to say it in. An interview removes two of those. You just respond.
+
+This is especially powerful if your thinking tends to be distributed rather than linear. Unfortunately, I don't always index my arguments on a given topic very well; I seem cursed with the misfortune of recalling clever counterpoints after the conversation is over. I have some relevant insights; real ones, hard-won; but they don't all spring to mind when I sit down to write. They surface later, mid-conversation, before bed, or while I'm writing about something tangentially related.
+
+I'm not claiming this is a good thing. I wish I had as elaborate a [zettelkasten](https://en.wikipedia.org/wiki/Zettelkasten) as [Gwern](https://gwern.net/) or [Andy Matuschak](https://notes.andymatuschak.org/About_these_notes). But the reality is I have thousands of notes in sprawling folder structures, tens of thousands of Readwise clippings, and a head full of ideas that don't always surface when I need them.
+
+Being interviewed by an AI changes this. The targeted questions act like retrieval cues. The AI asks about edge cases and easy misunderstandings I'd overlooked. It asks about my personal experience with the topic, and suddenly I'm telling a story I forgot was relevant. It asks "what's the common mistake people make here?" and I realize I have a strong opinion I'd never articulated. The questions cause insights to spring up much faster than they would from staring at a cursor. A good interview extracts _priority_, not just content. When you light up on a certain point, a good interviewer hears it and says "wait, tell me more about that." That's how a throughline is born; not from an outline, but from your own emphasis reflected back at you.
+
+There's a concept in machine learning that maps onto this nicely: the [generator-discriminator gap](https://en.wikipedia.org/wiki/Generative_adversarial_network). It's easier to evaluate and react to something than to produce it from nothing. GANs exploit this in neural networks, but it applies to human cognition too. Responding to a question is a fundamentally different, and often easier, cognitive task than generating from scratch. The interview exploits this asymmetry in your favor.
+
+Second, the interview changes how the AI itself operates. When you tell an AI to write, it's generating; it has to fill every gap: your tone, your audience, your actual opinion, which examples matter. It guesses confidently. It often guesses wrong. [Every gap becomes an assumption](https://en.wikipedia.org/wiki/There_are_unknown_unknowns). But when you ask it to _interview_ you, you've changed the task. Now the gaps are things to ask about, not things to fill in (or, hallucinate). The AI is trained to be helpful, which usually means confident guessing; the interview prompt _changes what helpful means_. Helpful-as-generator means filling blanks. Helpful-as-interviewer means finding them.
+
+The common fear is that AI erodes agency: that it flattens your thinking into an average of its training data. The interview does the opposite. It's a funnel for agency — it lets you get past the scattered notes, the distributed thinking, the insights that don't surface on command, and channels your efforts into something coherent. It can also _push back_. A good interview challenges; the AI will probe underdeveloped ideas and refuse to move on until you've actually said something concrete. That combination of patience and pressure is hard to find elsewhere. Well-focused, well-meaning friends are irreplaceable for idea curation, but they have finite time. The AI just happens to never run out of follow-up questions.
+
+## God, the Smell
+
+There's a reasonable gut reaction people have to AI-assisted writing, and it isn't wrong. You know the smell. The too-smooth transitions. The anodyne confidence. The way every paragraph seems to conclude with a tidy little bow.
+
+> "It's not just X, It's Y!"
+
+There are [taxonomies](https://www.thealgorithmicbridge.com/p/10-signs-of-ai-writing-that-99-of) of [AI writing tells](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) in every corner of the internet that values quality, [entire](https://www.originality.ai/) [startups](https://gptzero.me/) [built to](https://www.pangram.com/) detect AI-generated slop — and for good reason.
+
+Here's the thing: **When I read your writing -- I don't want to know what Claude thinks.**[^1] I've probably talked to Claude enough to guess. I want to know what _you_ think. I just need it shaped so I can follow it.
+
+That's what the interview does. It flips the typical AI writing dynamic. In the default workflow — give the AI a topic, get back a draft — the AI fills in _everything_: the arguments, the examples, the structure, the voice. You're left editing someone else's thinking. Interview-driven writing is the antidote. When the draft is built from your specific answers, there's no need for the AI to reach for filler.
+
+We don't seem to have this hangup with podcasts. When Dwarkesh interviews Dario, nobody credits Dwarkesh with Dario's ideas — even though we respect his skill as an interviewer. The same dynamic applies here. The AI asks the questions; the thinking is yours. Ghostwriters have always worked this way too — interviewing an author extensively before drafting, because the author's insights are the whole point and you can't fake them.
+
+The resulting first draft isn't the finished product. It's the collected context, _your_ context, arranged coherently enough to work with. From there, you write. And as Addy Osmani put it in his [reflections on 14 years at Google](https://addyosmani.com/blog/21-lessons/): writing forces clarity — when you try to make something legible to someone else, it becomes more legible to you. The interview gives you the raw material; the editing is where your thinking actually sharpens.
+
+So the full process is really: AI draws out your raw thinking → you get structured raw material → you refine it into clear writing → that refinement deepens the thinking → repeat. Each layer makes the work more yours, not less.
+
+Paul Graham once [suggested](https://x.com/paulg/status/1618676092163997696) using ChatGPT to write an essay on your topic _first_, so you can see the conventional take and avoid saying that. Interview-driven writing comes at it from the opposite direction: instead of using the AI to show you what _not_ to say, you use it to draw out what only you _can_ say. Both approaches share the same instinct — that the value of your writing is in what's specifically, irreducibly yours.
+
+## Formats That Work
+
+Once you buy the premise, there are a few ways to run the interview in practice:
+
+**Chat Q&A** — the AI asks one question at a time in conversation. Natural, good for blog posts and open-ended topics. The downside is long threads get messy and earlier answers get lost in the scroll.
+
+**Fillable questionnaires** — the AI writes a document full of questions with blank answer fields. You see everything at once, answer out of order. More structured, but less conversational. The questionnaire format presents all the relevant questions at once, prompting associations you wouldn't have followed on your own.[^2]
+
+**Structured prompts** — multiple-choice or short-answer UI, like what some AI tools offer natively. Best for spec-writing where decisions are binary: should we use approach A or B? Less useful for creative work. Here's what this looked like (in Claude Cowork) during the writing of this very post:
+
+<div style={{ borderRadius: '10px', overflow: 'hidden', padding: '0px' }}>
+  <img
+    src="/static/images/blog/what-only-you-can-say-cowork.png"
+    alt="Claude Cowork structured prompts during the writing of this post"
+    style={{ margin: 0 }}
+  />
+</div>
+
+My current favorite setup: I have Claude connected to my Obsidian notebook via Cowork, and we take turns — it asks me questions, I answer in the doc, it asks follow-ups, I edit. The key is prompting the AI to be _persistent_; to keep interviewing you through each draft, not just once at the beginning.
+
+## Try It Yourself
+
+The nice thing about this technique is that it's self-bootstrapping. You can copy the core idea of this post into a conversation with any AI and say: "interview me about \[my topic\] before writing anything." It'll work. (And it's not limited to writing — I've used the same approach to clarify personal goals, work through decisions, and think through problems that felt too tangled to start on.)
+
+<details>
+<summary style={{cursor: 'pointer', padding: '10px'}}>Here's a prompt you can paste directly:</summary>
+
+```
+I want to write about [TOPIC]. Before writing anything, interview me about it.
+Ask one question at a time. Be a good interviewer — ask follow-ups, push
+for concrete examples, flag when my answer is vague, and don't move on
+until I've said something specific. If I contradict myself, point it out.
+Keep going until you've covered the topic thoroughly, then summarize
+what you've learned from my answers.
+```
+
+</details>
+
+<br />
+
+If you want to go further, this is a perfect candidate for a reusable [Claude Skill](https://docs.anthropic.com/en/docs/claude-code/skills) or custom slash command: a `/interview-draft` that knows to ask you questions first, collect your answers, and produce a first draft from them. The whole workflow described in this post could be a single command you run every time you start writing.
+
+If you try this and it clicks for you — or if you want help getting the workflow set up — find me on [Twitter](https://x.com/linkbechtel) or [Substack](https://lukebechtel.substack.com). I'm always happy to talk shop.
+
+## Closing
+
+The gap between "I have good ideas" and "I've published good writing" is not usually a gap of insight. It's a gap of _process_ and _discipline_. Many people — especially people who think in fragments, who collect insights over weeks rather than producing them in marathon writing sessions — have more to say than they've ever managed to get on paper.
+
+Many great projects go through a stage where they don't seem impressive, even to their creators. Interview-driven writing lowers that bar. You're not starting from a blank page. You're not producing something from nothing. You're just answering questions. And then you have your thinking laid out in front of you, and the terrifying blank page part is behind you.
+
+You bring the thinking. The AI brings the questions and the patience to draw it all out. What you get back is your own ideas, organized and ready to be written. By you, with whatever help you want along the way.
+
+---
+
+_Many drafts of this post were written using the process it describes._
+
+[^1]: Or rather, I do, but I'm already asking it on my own, don't you worry...
+[^2]: There's a [comment on Hacker News](https://news.ycombinator.com/item?id=34137751) about tools for thought that captures this well: "Software that actively searches for associations with what you're currently writing and presents them to you could be much more valuable than software that lets you follow hyperlinks."
+
+---
+
+<div className="flex items-center justify-center pt-4">
+  <iframe
+    src="https://lukebechtel.substack.com/embed"
+    width="480"
+    height="320"
+    style={{ border: '1px solid #EEE', background: 'white' }}
+    frameBorder="0"
+    scrolling="no"
+  ></iframe>
+</div>
