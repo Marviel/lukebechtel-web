@@ -1,6 +1,24 @@
 const projectsData = [
   {
     type: 'company',
+    title: 'Infinity',
+    role: 'Founding Engineer',
+    tasks: '',
+    description: `Infinity builds AI inference infrastructure — serving production LLMs and multimodal models on state-of-the-art GPU hardware, with autonomous agent-driven kernel optimization across CUDA, ROCm, and MLX.`,
+    imgSrcStatic: '/static/images/infinity/infinity-logo.png',
+    href: 'https://infinity.inc',
+  },
+  {
+    type: 'company',
+    title: 'Reasonote',
+    role: 'Founder / CEO',
+    tasks: '',
+    description: `AI-powered personalized learning platform: on-demand lessons, activities, and podcasts generated just for you. Hundreds of users, 4000+ generated lessons, and a successful Product Hunt launch — now open source.`,
+    imgSrcStatic: '/static/images/reasonote/reasonote-logo.png',
+    href: 'https://www.reasonote.com',
+  },
+  {
+    type: 'company',
     title: 'Revaly',
     role: 'Director of Engineering',
     tasks: '',
@@ -18,7 +36,7 @@ const projectsData = [
     imgSrcStatic: '/static/images/collider/collider_logo_banner_text.jpg',
     imgSrcHovering: '/static/images/collider/Collider-Process-Cropped.gif',
     href: 'https://www.collidertech.com',
-  }
+  },
 ]
 
 export default projectsData
